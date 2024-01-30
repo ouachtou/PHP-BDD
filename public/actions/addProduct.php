@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . '/../src/init.php';
+require_once __DIR__ . '/../../src/init.php';
 // $pdo est dispo !
 
 if (empty($_POST['name'])) {
@@ -26,6 +26,29 @@ if (empty($_POST['price'])) {
 if (empty($_POST['quantity'])) {
     // error
     $_SESSION['error_message'] = 'Quantity field is empty.';
+    header('Location: /addProduct.php'); // redirige utilisateur
+    die(); // stop execution du script
+}
+
+if (!empty($_POST['reduction'])) {
+    if (!is_numeric($_POST['reduction'])) {
+        // error
+        $_SESSION['error_message'] = 'Reduction must be a number.';
+        header('Location: /addProduct.php'); // redirige utilisateur
+        die(); // stop execution du script
+    }
+}
+
+if (!is_numeric($_POST['price'])) {
+    // error
+    $_SESSION['error_message'] = 'Price must be a number.';
+    header('Location: /addProduct.php'); // redirige utilisateur
+    die(); // stop execution du script
+}
+
+if (!is_numeric($_POST['quantity'])) {
+    // error
+    $_SESSION['error_message'] = 'Quantity must be a number.';
     header('Location: /addProduct.php'); // redirige utilisateur
     die(); // stop execution du script
 }
