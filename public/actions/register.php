@@ -28,13 +28,13 @@ if (strlen($_POST['password']) < 6) {
     die(); // stop execution du script
 }
 
-$password = hash('sha256', $_POST['password']);
+$password = password_hash($_POST['password'], PASSWORD_BCRYPT);
 
 // verifier que l'email n'est pas deja en DB
 $st1 = $pdo->prepare('SELECT * FROM users WHERE email = ? OR first_name = ?');
 $st1->execute([$_POST['email'], $_POST['first_name']]);
 $alreadyExists = $st1->fetch(PDO::FETCH_ASSOC);
-// $alreadyExists = [ 'first_name' => 'edouard', .... ];
+// $alreadyExists = [ 'username' => 'edouard', .... ];
 if ($alreadyExists != false) {
     $_SESSION['error_message'] = 'Déjà inscrit.';
     header('Location: /register.php'); // redirige utilisateur
