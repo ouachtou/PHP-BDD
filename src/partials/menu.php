@@ -7,7 +7,7 @@
     }
 
     nav {
-        background-color: #06B0E2;
+        background-color: darkblue;
         height: 80px;
         display: flex;
     }
@@ -29,7 +29,7 @@
 
     a {
         text-decoration: none;
-        color: #002029;
+        color: white;
         font-size: 18px;
         font-weight: bold;
         padding: 10px 20px;
@@ -37,31 +37,32 @@
 </style>
 
 <nav>
-
-    <img src='/public/logo.png' alt='Logo'>
+    <img src='/assets/logo.png' alt='Logo'>
 
     <ul>
         <li>
             <a href="/">Home</a>
         </li>
         <?php
-        if ($user === false) { ?>
+        if ($user === false) : ?>
             <li>
                 <a href="/register.php">Register</a>
             </li>
             <li>
                 <a href="/login.php">Login</a>
             </li>
-        <?php } else { ?>
-            <?php if ($user->admin) { ?>
+        <?php else : ?>
+            <?php if ($user['admin']) : ?>
                 <li>
                     <a href="/addProduct.php">Add Product</a>
                 </li>
-            <?php } ?>
+            <?php endif; ?>
+            <li>
+                <a href="/shoppingCart.php">Shopping Cart</a>
+            </li>
             <li>
                 <a href="/actions/logout.php">Log OUT</a>
             </li>
-        <?php } ?>
+        <?php endif; ?>
     </ul>
-
 </nav>
