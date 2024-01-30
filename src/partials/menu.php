@@ -10,6 +10,9 @@
     <li>
         <a href="/login.php">Login</a>
     </li>
+    <li>
+        <a href="/addProduct.php">Add Product</a>
+    </li>
     <?php } else { ?>
     <li>
         <a href="/actions/logout.php">Log OUT</a>
