@@ -23,11 +23,11 @@ CREATE TABLE `Orders`(
     `id_user` INT(11) NOT NULL,
     `status` varchar(255) NOT NULL,
     `updated_at` varchar(255) NOT NULL DEFAULT current_timestamp(),
-    `created_at` int(11) NOT NULL DEFAULT current_timestamp()
+    `created_at` int(11) NOT NULL DEFAULT current_timestamp(),
     FOREIGN KEY (`id_user`) REFERENCES Users (`id`)
 );
 
-CREATE TABLE `Avis`(
+CREATE TABLE `Feedback`(
     `id` INT(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
     `id_user` INT(11) NOT NULL,
     `id_product` INT(11) NOT NULL,
