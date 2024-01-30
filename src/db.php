@@ -1,5 +1,4 @@
 <?php
-
 function initDB()
 {
     $db_host = 'mariadb';
