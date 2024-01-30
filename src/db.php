@@ -1,7 +1,7 @@
 <?php 
 
 function initDB() {
-    
+      
     $db_host = 'mariadb';
     $db_name = 'dbadmin';
     $db_port = '3306';
