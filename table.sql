@@ -1,23 +1,22 @@
-CREATE TABLE `users` (
+CREATE TABLE `Users` (
     `id` INT(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
-    `nom` varchar(255) NOT NULL,
-    `prénom` varchar(255) NOT NULL,
-    `adresse` varchar(255) NOT NULL,
+    `name` varchar(255) NOT NULL,
+    `first_name` varchar(255) NOT NULL,
+    `adress` varchar(255) NOT NULL,
     `password` varchar(255) NOT NULL,
     `email` varchar(255) NOT NULL,
-    `num` int(11) NOT NULL,
     `created_at` datetime NOT NULL DEFAULT current_timestamp(),
-    `Admin` boolean DEFAULT,
+    `admin` boolean DEFAULT
 );
 
-CREATE TABLE 'Produit' (
-    `id-produit` INT(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
-    `nom` varchar(255) NOT NULL,
+CREATE TABLE 'Products' (
+    `id_product` INT(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    `name` varchar(255) NOT NULL,
     `type` varchar(255) NOT NULL,
-    `prix` int(11) NOT NULL,
-    `quantités` int(11) NOT NULL,
-    `réduction` int(11) NOT NULL,
+    `price` int(11) NOT NULL,
+    `quantity` int(11) NOT NULL,
+    `reduction` int(11) NOT NULL,
 );
 
-CREATE TABLE 'Commandes'(
+CREATE TABLE 'Orders'(
 )
