@@ -41,3 +41,20 @@ CREATE TABLE `Avis`(
     FOREIGN KEY (`id_user`)REFERENCES Users (`id`),
     FOREIGN KEY (`id`)REFERENCES Orders (`id`),
 );
+
+CREATE TABLE `Link`(
+    `id` INT(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    `id_order` INT(11) NOT NULL,
+    `id_product` INT(11) NOT NULL,
+);
+ALTER TABLE Link
+    ADD CONSTRAINT `name`
+    FOREIGN KEY (`id_order`)
+    REFERENCES Orders (`id`)
+    ON DELETE CASCADE;
+
+ALTER TABLE Link
+    ADD CONSTRAINT `name`
+    FOREIGN KEY (`id_product`)
+    REFERENCES Products (`id`)
+    ON DELETE CASCADE;
