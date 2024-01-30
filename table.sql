@@ -30,3 +30,14 @@ ALTER TABLE Orders
     FOREIGN KEY (`id_user`)
     REFERENCES Users (`id`)
     ON DELETE CASCADE;
+
+CREATE TABLE `Avis`(
+    `id` INT(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    `id_user` INT(11) NOT NULL,
+    `id` INT(11) NOT NULL,
+    `commentaire` varchar(255) NOT NULL,
+    `note` FLOAT(1) NOT NULL,
+    `uploaded_at` int(11) NOT NULL DEFAULT current_timestamp(),
+    FOREIGN KEY (`id_user`)REFERENCES Users (`id`),
+    FOREIGN KEY (`id`)REFERENCES Orders (`id`),
+);
