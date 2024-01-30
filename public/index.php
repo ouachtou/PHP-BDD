@@ -23,7 +23,7 @@ require_once __DIR__ . '/../src/init.php';
             </div>
         </div>
     </div>
-    
+
     <!-- #Formulaire --->
     <div class="search_container">
         <form action="index.php" method="POST">
@@ -53,12 +53,12 @@ require_once __DIR__ . '/../src/init.php';
             ?>
             <?php foreach ($products as $product) : ?>
                 <tr class="case">
-                    <td><?php echo $product->id ?></td>
-                    <td><?php echo $product->name ?></td>
-                    <td><?php echo $product->type ?></td>
-                    <td><?php echo $product->price ?></td>
-                    <td><?php echo $product->quantity ?></td>
-                    <td><?php echo $product->reduction ?></td>
+                    <td><?php echo $product['id'] ?></td>
+                    <td><?php echo $product['name'] ?></td>
+                    <td><?php echo $product['type'] ?></td>
+                    <td><?php echo $product['price'] ?></td>
+                    <td><?php echo $product['quantity'] ?></td>
+                    <td><?php echo $product['reduction'] ?></td>
                 </tr>
             <?php endforeach; ?>
         </tbody>
