@@ -1,7 +1,7 @@
-<?php 
+<?php
 
-function initDB() {
-      
+function initDB()
+{
     $db_host = 'mariadb';
     $db_name = 'dbadmin';
     $db_port = '3306';
@@ -11,11 +11,9 @@ function initDB() {
     // data source name
     $dsn = 'mysql:host=' . $db_host . ';dbname=' . $db_name . ';port=' . $db_port . '';
 
-
     try {
         $db = new PDO($dsn, $db_user, $db_pass);
-    }
-    catch (Exception $e) {
+    } catch (Exception $e) {
         die('Erreur MySQL, maintenance en cours.' . $e->getMessage());
     }
 

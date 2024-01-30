@@ -6,7 +6,7 @@ CREATE TABLE `Users` (
     `password` varchar(255) NOT NULL,
     `email` varchar(255) NOT NULL,
     `created_at` datetime NOT NULL DEFAULT current_timestamp(),
-    `admin` boolean NOT NULL
+    `admin`boolean DEFAULT FALSE
 );
 
 CREATE TABLE `Products` (
@@ -15,7 +15,7 @@ CREATE TABLE `Products` (
     `type` varchar(255) NOT NULL,
     `price` int(11) NOT NULL,
     `quantity` int(11) NOT NULL,
-    `reduction` int(11) NOT NULL
+    `reduction` int(11) NOT NULL DEFAULT 0
 );
 
 CREATE TABLE `Orders`(

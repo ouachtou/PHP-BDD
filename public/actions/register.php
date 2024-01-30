@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . '/../src/init.php';
+require_once __DIR__ . '/../../src/init.php';
 // $pdo est dispo !
 
 if (empty($_POST['email'])) {
@@ -31,10 +31,10 @@ if (strlen($_POST['password']) < 6) {
 $password = hash('sha256', $_POST['password']);
 
 // verifier que l'email n'est pas deja en DB
-$st1 = $pdo->prepare('SELECT * FROM users WHERE email = ? OR username = ?');
-$st1->execute([$_POST['email'], $_POST['username']]);
+$st1 = $pdo->prepare('SELECT * FROM users WHERE email = ? OR first_name = ?');
+$st1->execute([$_POST['email'], $_POST['first_name']]);
 $alreadyExists = $st1->fetch(PDO::FETCH_ASSOC);
-// $alreadyExists = [ 'username' => 'edouard', .... ];
+// $alreadyExists = [ 'first_name' => 'edouard', .... ];
 if ($alreadyExists != false) {
     $_SESSION['error_message'] = 'Déjà inscrit.';
     header('Location: /register.php'); // redirige utilisateur
@@ -42,8 +42,8 @@ if ($alreadyExists != false) {
 }
 
 // INSERT
-$st2 = $pdo->prepare('INSERT INTO users(email, password, username) VALUES(?, ?, ?)');
-$st2->execute([$_POST['email'], $password, $_POST['username']]);
+$st2 = $pdo->prepare('INSERT INTO users(email, password, first_name, name, adress) VALUES(?, ?, ?, ?, ?)');
+$st2->execute([$_POST['email'], $password, $_POST['first_name'], $_POST['name'], $_POST['adress']]);
 
 // recup id utilisateur
 $_SESSION['user_id'] = $pdo->lastInsertId(); // connecté pour plus tard
