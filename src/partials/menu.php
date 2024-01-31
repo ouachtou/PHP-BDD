@@ -69,9 +69,11 @@
                 <a href="/feedback.php">Rate product</a>
             </li>
         </div>
+    </nav>
 
         <img id='img-logo' src='assets/logo.png' alt='Logo'>
 
+    <nav>
         <div id="rightNav">
             <?php
             if ($user === false) : ?>
