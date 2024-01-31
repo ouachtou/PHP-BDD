@@ -10,7 +10,7 @@ require_once __DIR__ . '/../public/actions/displayDedicateProduct.php';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./assets/bootstrap-5.3.2-dist/css/products.css">
+    <link rel="stylesheet" href="./assets/css/products.css">
     <title>TechShop - Our Products</title>
     <style>body{width: 100vw;height: 90vh;}</style>
     <?php require_once __DIR__ . '/../src/partials/head_css.php'; ?>
