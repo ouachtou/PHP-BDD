@@ -86,6 +86,9 @@
                     <li>
                         <a href="/addProduct.php">Add Product</a>
                     </li>
+                    <li>
+                        <a href="/modifyProduct.php">Modify Product</a>
+                    </li>
                 <?php } ?>
                 <li>
                     <a href="/actions/logout.php">Log OUT</a>
