@@ -36,37 +36,6 @@ require_once __DIR__ . '/../src/init.php';
     </div>
 
     <!-- #TABLEAU --->
-<<<<<<< HEAD
-    <table class="search">
-        <tbody>
-            <tr class="product">
-                <td>id</td>
-                <td>name</td>
-                <td>type</td>
-                <td>price</td>
-                <td>quantity</td>
-                <td>reduction</td>
-            </tr>
-            <?php
-            $pdo = initDB();
-            $searchValue = isset($_POST['search']) ? $_POST['search'] : "";
-            $pdoStatement = $pdo->prepare("SELECT * FROM Products
-             WHERE (name LIKE '%$searchValue%') OR (type LIKE '%$searchValue%') OR (price LIKE '%$searchValue%')");
-            $pdoStatement->execute();
-            $products = $pdoStatement->fetchAll();
-            ?>
-            <?php foreach ($products as $product) : ?>
-                <tr class="case">
-                    <td><?php echo $product['id'] ?></td>
-                    <td><?php echo $product['name'] ?></td>
-                    <td><?php echo $product['type'] ?></td>
-                    <td><?php echo $product['price'] ?></td>
-                    <td><?php echo $product['quantity'] ?></td>
-                    <td><?php echo $product['reduction'] ?></td>
-                </tr>
-            <?php endforeach; ?>
-        </tbody>
-=======
     <table>
         <tr>
             <td>id</td>
@@ -95,7 +64,6 @@ require_once __DIR__ . '/../src/init.php';
                 <td><?= $product['reduction'] ?></td>
             </tr>
         <?php endforeach; ?>
->>>>>>> 6c6847dd66d840c87b7f2648a1058db5e68ff853
     </table>
 </body>
 
