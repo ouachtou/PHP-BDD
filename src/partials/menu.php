@@ -11,24 +11,23 @@
         background: linear-gradient(#002029 10%, #06B0E2 100%);
         height: 80px;
         display: flex;
-        align-items:flex-end;
-        padding: 23px 4vw;
+        padding: 0 4vw;
         /* border-bottom: 4px solid #FF914D; */
         box-shadow: 0 0 5px 5px grey;
     }
 
-    #logo {
-        color: #FF914D;
-        margin-right: 2vw;
-        font-size: 30px;
-        font-weight: bold;
-        margin: 0 50px 0 0;
+    #img-logo {
+        width: 80px;
+        height: 90%;
+        align-self: end;
+        margin-right: 20px;
+        margin: 0 40px;
     }
 
     nav {
         width: 100%;
         display: flex;
-        justify-content: space-between;
+        justify-content: center;
         align-items: center;
     }
 
@@ -55,8 +54,7 @@
 
 <div id="navbar">
 
-    <img src='../../public/assets/logo.png' alt='Logo'>
-    <h1 id="logo">TechShop</h1>
+    <!-- <h1 id="logo">TechShop</h1> -->
 
     <nav>
         <div id="leftNav">
@@ -67,6 +65,8 @@
                 <a href="/productsList.php">Products List</a>
             </li>
         </div>
+
+        <img id='img-logo' src='assets/logo.png' alt='Logo'>
 
         <div id="rightNav">
             <?php
