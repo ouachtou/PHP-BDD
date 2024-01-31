@@ -64,6 +64,12 @@
             <li>
                 <a href="/productsList.php">Products List</a>
             </li>
+            <li>
+                <a href="/shoppingCart.php">Shopping Cart</a>
+            </li>
+            <li>
+                <a href="/feedback.php">Rate product</a>
+            </li>
         </div>
 
         <img id='img-logo' src='assets/logo.png' alt='Logo'>
@@ -84,6 +90,9 @@
                     </li>
                     <li>
                         <a href="/modifyProduct.php">Modify Product</a>
+                    </li>
+                    <li>
+                        <a href="/commande.php">Orders</a>
                     </li>
                 <?php } ?>
                 <li>
