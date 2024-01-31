@@ -26,6 +26,8 @@ require_once __DIR__ . '/../src/init.php';
             </div>
         </div>
     </div>
+    
+
 </body>
 
 </html>

@@ -19,8 +19,11 @@ function DisplayDedicatedProduct($pdo, $name, $type)
     $type = $product['type'];
     $price = $product['price'];
     $quantity = $product['quantity'];
+    $img = $product['img'];
 
-    $list = '<p id="name-PD">' . $name . '</p>';
+    $list = '';
+    $list .= '<img id="img-PD" src="' . $img . '" ></img>';
+    $list .= '<p id="name-PD">' . $name . '</p>';
     $list .= '<p id="type-PD">' . $type . '</p>';
     $list .= '<hr>';
     $list .= '<p id="price-PD">' . $price . ' €</p>';

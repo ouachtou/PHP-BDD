@@ -3,15 +3,13 @@ require_once __DIR__ . '/../../src/init.php';
 
 function GetProducts($pdo)
 {
-    $searchValue = isset($_POST['search']) ? $_POST['search'] : "";
-
     try {
         $st1 = $pdo->prepare("SELECT *, AVG(note) AS rating FROM Products AS p
         LEFT JOIN Feedbacks AS f ON f.id_product = p.id
-        WHERE (p.name LIKE '%$searchValue%') OR (p.type LIKE '%$searchValue%') OR (p.price LIKE '%$searchValue%')
         GROUP BY p.id;");
         $st1->execute();
         $products = $st1->fetchAll();
+
 
         return $products;
     } catch (Exception $e) {
@@ -31,12 +29,17 @@ function DisplayProducts($pdo)
         $quantity = $rows['quantity'];
         $reduction = $rows['reduction'];
         $rating = $rows['rating'];
+        $img = $rows['image'];
 
         $list .= '<form action="product.php" method="GET">';
         $list .= '  <input type="hidden" name="product" value="' . $name . '">';
         $list .= '  <input type="hidden" name="category" value="' . $type . '">';
         $list .= '  <button class="card-P" type="submit">';
-        $list .= '      <div class="image-P"></div>';
+        $list .= '      <div class="image-P">';
+        if ($img) {
+            $list .= '      <img class="img-P" src="' . $img . '" alt="' . $name . '" ></img>';
+        }
+        $list .= '      </div>';
         $list .= '      <div class="infos-P">';
         $list .= '          <p class="name-P">' . $name . '</p>';
         $list .= '          <div class="price-P">';

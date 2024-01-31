@@ -1,21 +1,29 @@
 .cardsContainer {
-	display: flex;
-	justify-content: space-around;
-	flex-wrap: wrap;
 	margin-top: 50px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+  text-align: center;
 }
 
 .card-P {
 	background-color: white;
 	width: 300px;
-	border-radius: 5px;
+	border-radius: 5px; 
 	border: none;
 	box-shadow: 0 0 2px 2px lightgray;
 	margin: 0 10px 20px;
+
 }
 
 .card-P:hover {
 	box-shadow: 0 0 2px 2px gray;
+}
+
+.img-P  {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 
 .image-P {
@@ -78,6 +86,8 @@
   border: 1px solid grey;
   height: 80%;
   width: 100%;
+  object-fit: contain;
+  background-color: white;
 }
 
 #infos-PD {
