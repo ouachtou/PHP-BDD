@@ -62,7 +62,7 @@ require_once __DIR__ . '/../src/init.php';
                 <input placeholder="Adress" type="text" name="adress" id="adress">
             </div>
             <div>
-                <input placeholder="Number" type="tel" name="Number" id="Number">
+                <input placeholder="Number" type="tel" name="number" id="number">
             </div>
             <div>
                 <button type="submit">Order</button>
