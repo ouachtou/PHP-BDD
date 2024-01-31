@@ -11,7 +11,7 @@ require_once __DIR__ . '/../public/actions/displayDedicatedProduct.php';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./assets/css/products.css">
-    <title>TechShop - Our Products</title>
+    <title>TechShop - <?= $_GET["product"] ?></title>
     <style>
         body {
             width: 100vw;
@@ -27,7 +27,7 @@ require_once __DIR__ . '/../public/actions/displayDedicatedProduct.php';
     <div id="container-PD" class="container">
         <div id="img-PD"></div>
         <div id="infos-PD">
-            <?= DisplayDedicatedProduct($_GET["product"], $_GET["category"]) ?>
+            <?= DisplayDedicatedProduct($pdo, $_GET["product"], $_GET["category"]) ?>
             <a href="./login.php"></a>
         </div>
     </div>

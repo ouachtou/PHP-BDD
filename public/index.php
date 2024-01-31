@@ -8,7 +8,7 @@ require_once __DIR__ . '/../src/init.php';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TechShop - Accueil</title>
+    <title>TechShop - Home</title>
     <?php require_once __DIR__ . '/../src/partials/head_css.php'; ?>
 </head>
 
@@ -19,9 +19,9 @@ require_once __DIR__ . '/../src/init.php';
     <div class="container">
         <div class="row">
             <div class="col">
-                <h1>Bonjour</h1>
+                <h1>Hello</h1>
                 <div class="alert alert-success">
-                    Bienvenue sur la boutique !
+                    Welcome to TechShop !
                 </div>
             </div>
         </div>

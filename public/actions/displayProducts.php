@@ -6,7 +6,7 @@ function GetProducts($pdo)
     $searchValue = isset($_POST['search']) ? $_POST['search'] : "";
 
     try {
-        $st1 = $pdo->prepare("SELECT p.id, name, type, price, quantity, reduction, AVG(note) AS rating FROM Products AS p
+        $st1 = $pdo->prepare("SELECT *, AVG(note) AS rating FROM Products AS p
         LEFT JOIN Feedbacks AS f ON f.id_product = p.id
         WHERE (p.name LIKE '%$searchValue%') OR (p.type LIKE '%$searchValue%') OR (p.price LIKE '%$searchValue%')
         GROUP BY p.id;");

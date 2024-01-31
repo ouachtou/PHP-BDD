@@ -8,7 +8,7 @@ require_once __DIR__ . '/../src/init.php';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shopping Cart</title>
+    <title>TechShop - Shopping Cart</title>
 </head>
 
 <body>
@@ -17,19 +17,19 @@ require_once __DIR__ . '/../src/init.php';
 
     <table>
         <tr>
-            <td>name</td>
-            <td>type</td>
-            <td>price</td>
-            <td>reduction</td>
-            <td>reduced price</td>
+            <th>name</td>
+            <th>type</td>
+            <th>price</td>
+            <th>reduction</td>
+            <th>reduced price</td>
         </tr>
 
         <?php
         $pdoStatement = $pdo->prepare("SELECT * FROM Products AS p
-    JOIN Links AS l ON l.id_product = p.id
-    JOIN Orders AS o ON l.id_order = o.id
-    JOIN Users AS u ON u.id = o.id_user;
-    WHERE u.id = ?");
+        JOIN Links AS l ON l.id_product = p.id
+        JOIN Orders AS o ON l.id_order = o.id
+        JOIN Users AS u ON u.id = o.id_user;
+        WHERE u.id = ?");
         $pdoStatement->execute([$_SESSION['user_id']]);
         $products = $pdoStatement->fetchAll();
 
@@ -43,6 +43,7 @@ require_once __DIR__ . '/../src/init.php';
             </tr>
         <?php endforeach; ?>
     </table>
+
     <br>
     <br>
     <br>
