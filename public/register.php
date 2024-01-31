@@ -25,7 +25,7 @@ require_once __DIR__ . '/../src/init.php';
         </div>
         <div>
             <label for="cpassword">Confirm Password:</label>
-            <input type="cpassword" name="cpassword" id="cpassword">
+            <input type="password" name="cpassword" id="cpassword">
         </div>
         <div>
             <label for="first_name">first_name:</label>
