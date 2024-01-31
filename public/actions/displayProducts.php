@@ -5,7 +5,8 @@ function GetProducts($pdo)
 {
     try {
         $st1 = $pdo->prepare('SELECT name, type, price, quantity, reduction, AVG(note) AS rating FROM Products AS p
-        LEFT JOIN Feedbacks AS f ON f.id_product = p.id');
+        LEFT JOIN Feedbacks AS f ON f.id_product = p.id
+        GROUP BY p.id;');
         $st1->execute();
         $products = $st1->fetchAll();
 
@@ -44,9 +45,13 @@ function DisplayProducts($pdo)
         $list .= '          <img src="../assets/stars.png" class="stars-P" style="width:' . 107.083 * $rating / 10 . 'px;">';
         $list .= '          <p style="margin-left: 5px; margin-top: 3px; margin-bottom: 0;">' . $rating / 2 . '</p>';
         $list .= '      </div>';
+        if ($quantity > 0) {
+            $list .= ' <p class="quantity-p">' . $quantity . ' restante(s) </p>';
+        } else {
+            $list .= '          <p class="quantity-p"> Hors Stock </p>';
+        }
         $list .= '  </div>';
         $list .= ' </button>';
     }
-
     return $list;
 }
