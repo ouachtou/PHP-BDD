@@ -1,6 +1,7 @@
 <?php
 require_once __DIR__ . '/../src/init.php';
 require_once __DIR__ . '/../public/actions/displayProducts.php';
+
 ?>
 
 <!DOCTYPE html>
@@ -29,7 +30,7 @@ require_once __DIR__ . '/../public/actions/displayProducts.php';
                     </form>
                 </div>
                 <div class="cardsContainer">
-                    <?= DisplayProducts($pdo, $_POST['search']) ?>
+                    <?= DisplayProducts($pdo) ?>
                 </div>
             </div>
         </div>

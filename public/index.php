@@ -26,37 +26,6 @@ require_once __DIR__ . '/../src/init.php';
             </div>
         </div>
     </div>
-
-    <!-- #TABLEAU --->
-    <table>
-        <tr>
-            <td>id</td>
-            <td>name</td>
-            <td>type</td>
-            <td>price</td>
-            <td>quantity</td>
-            <td>reduction</td>
-        </tr>
-
-        <?php
-        $searchValue = isset($_POST['search']) ? $_POST['search'] : "";
-
-        $pdoStatement = $pdo->prepare("SELECT * FROM Products 
-            WHERE (name LIKE '%$searchValue%') OR (type LIKE '%$searchValue%') OR (price LIKE '%$searchValue%')");
-        $pdoStatement->execute();
-        $products = $pdoStatement->fetchAll();
-
-        foreach ($products as $product) : ?>
-            <tr>
-                <td><?= $product['id'] ?></td>
-                <td><?= $product['name'] ?></td>
-                <td><?= $product['type'] ?></td>
-                <td><?= $product['price'] ?></td>
-                <td><?= $product['quantity'] ?></td>
-                <td><?= $product['reduction'] ?></td>
-            </tr>
-        <?php endforeach; ?>
-    </table>
 </body>
 
 </html>

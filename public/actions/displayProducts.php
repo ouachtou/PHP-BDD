@@ -1,9 +1,8 @@
 <?php
 require_once __DIR__ . '/../../src/init.php';
 
-function GetProducts($pdo, $Search)
+function GetProducts($pdo)
 {
-
     $searchValue = isset($_POST['search']) ? $_POST['search'] : "";
 
     try {
@@ -20,9 +19,9 @@ function GetProducts($pdo, $Search)
     };
 }
 
-function DisplayProducts($pdo, $Search)
+function DisplayProducts($pdo)
 {
-    $allProducts = GetProducts($pdo, $Search);
+    $allProducts = GetProducts($pdo);
     $list = '';
 
     foreach ($allProducts as $rows) {
