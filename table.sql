@@ -7,8 +7,8 @@ CREATE TABLE `Users` (
     `password` VARCHAR(255) NOT NULL,
     `email` VARCHAR(255) NOT NULL,
     `created_at` DATETIME NOT NULL DEFAULT current_timestamp(),
-    `admin` BOOLEAN DEFAULT FALSE
-    'phone_number' VARCHAR(11) DEFAULT NULL,
+    `admin` BOOLEAN DEFAULT FALSE,
+    `phone_number` VARCHAR(11) DEFAULT NULL
 ) ENGINE = INNODB CHARACTER SET 'utf8';
 
 CREATE TABLE `Products` (

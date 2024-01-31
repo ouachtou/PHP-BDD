@@ -48,4 +48,7 @@ $st2->execute([$_POST['email'], $password, $_POST['first_name']]);
 // recup id utilisateur
 $_SESSION['user_id'] = $pdo->lastInsertId(); // connecté pour plus tard
 
-header('Location: /register.php?success=1'); // $_GET['success']
+$st3 = $pdo->prepare('INSERT INTO Orders(id_user, status) VALUES(?, ?)');
+$st3->execute([$_SESSION['user_id'], 'New']);
+
+header('Location: /index.php?success=1'); // $_GET['success']
