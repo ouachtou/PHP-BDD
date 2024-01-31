@@ -56,6 +56,9 @@
                 <li>
                     <a href="/addProduct.php">Add Product</a>
                 </li>
+                <li>
+                    <a href="/modifyProduct.php">Add Product</a>
+                </li>
             <?php endif; ?>
             <li>
                 <a href="/shoppingCart.php">Shopping Cart</a>
