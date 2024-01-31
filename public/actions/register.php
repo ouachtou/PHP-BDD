@@ -42,8 +42,8 @@ if ($alreadyExists != false) {
 }
 
 // INSERT
-$st2 = $pdo->prepare('INSERT INTO users(email, password, first_name, name, adress) VALUES(?, ?, ?, ?, ?)');
-$st2->execute([$_POST['email'], $password, $_POST['first_name'], $_POST['name'], $_POST['adress']]);
+$st2 = $pdo->prepare('INSERT INTO users(email, password, first_name) VALUES(?, ?, ?)');
+$st2->execute([$_POST['email'], $password, $_POST['first_name']]);
 
 // recup id utilisateur
 $_SESSION['user_id'] = $pdo->lastInsertId(); // connecté pour plus tard
