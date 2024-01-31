@@ -37,10 +37,8 @@ function DisplayProducts($pdo)
             $list .= '          <p class="quantity-p"> Hors Stock </p>';
         }
 
-
         $list .= '  </div>';
         $list .= ' </button>';
     }
-
     return $list;
 }
