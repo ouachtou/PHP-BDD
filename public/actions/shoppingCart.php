@@ -9,20 +9,26 @@ if (empty($_POST['email'])) {
     die(); // stop execution du script
 }
 
-if (empty($_POST['password'])) {
+if (empty($_POST['name'])) {
     // error
     $_SESSION['error_message'] = 'Champs password vide.';
     header('Location: /register.php'); // redirige utilisateur
     die(); // stop execution du script
 }
 
-if (filter_var($_POST['email'], FILTER_VALIDATE_EMAIL) === false) {
+if (filter_var($_POST['first_name'], FILTER_VALIDATE_EMAIL) === false) {
     $_SESSION['error_message'] = "L'email est invalide";
     header('Location: /register.php'); // redirige utilisateur
     die(); // stop execution du script
 }
 
-if (strlen($_POST['password']) < 6) {
+if (strlen($_POST['number']) < 6) {
+    $_SESSION['error_message'] = "Le mot de passe est trop petit (<6)";
+    header('Location: /register.php'); // redirige utilisateur
+    die(); // stop execution du script
+}
+
+if (strlen($_POST['adress']) < 6) {
     $_SESSION['error_message'] = "Le mot de passe est trop petit (<6)";
     header('Location: /register.php'); // redirige utilisateur
     die(); // stop execution du script
@@ -42,7 +48,7 @@ if ($alreadyExists != false) {
 }
 
 // INSERT
-$st2 = $pdo->prepare('INSERT INTO users(email, password, first_name) VALUES(?, ?, ?)');
+$st2 = $pdo->prepare('UPDATE users(email, password, first_name) VALUES(?, ?, ?)');
 $st2->execute([$_POST['email'], $password, $_POST['first_name']]);
 
 // recup id utilisateur

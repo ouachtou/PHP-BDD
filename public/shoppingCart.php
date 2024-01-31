@@ -43,4 +43,30 @@ require_once __DIR__ . '/../src/init.php';
             </tr>
         <?php endforeach; ?>
     </table>
+    <br>
+    <br>
+    <br>
+
+    <div>
+        <form action="/actions/shoppingCart.php" method="post">
+            <div>
+                <input placeholder="Name" type="text" name="name" id="name">
+            </div>
+            <div>
+                <input placeholder="First name" type="text" name="first_name" id="first_name">
+            </div>
+            <div>
+                <input placeholder="E-mail" type="email" name="email" id="email">
+            </div>
+            <div>
+                <input placeholder="Adress" type="text" name="adress" id="adress">
+            </div>
+            <div>
+                <input placeholder="Number" type="tel" name="Number" id="Number">
+            </div>
+            <div>
+                <button type="submit">Order</button>
+            </div>
+        </form>
+    </div>
 </body>
