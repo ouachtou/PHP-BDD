@@ -3,10 +3,13 @@ require_once __DIR__ . '/../../src/init.php';
 
 function GetProducts($pdo)
 {
+    $searchValue = isset($_POST['search']) ? $_POST['search'] : "";
+
     try {
         $st1 = $pdo->prepare('SELECT p.id, name, type, price, quantity, reduction, AVG(note) AS rating FROM Products AS p
         LEFT JOIN Feedbacks AS f ON f.id_product = p.id
-        GROUP BY p.id;');
+        WHERE (p.name LIKE '%$searchValue%') OR (p.type LIKE '%$searchValue%') OR (p.price LIKE '%$searchValue%')
+        GROUP BY p.id;");
         $st1->execute();
         $products = $st1->fetchAll();
 

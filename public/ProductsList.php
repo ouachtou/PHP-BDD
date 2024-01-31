@@ -1,11 +1,6 @@
 <?php
-    require_once __DIR__ . '/../src/init.php';
-    require_once __DIR__ . '/../public/actions/displayProducts.php';
-
-    function redirect() {
-        header('Location: register.php');
-        exit();
-    }
+require_once __DIR__ . '/../src/init.php';
+require_once __DIR__ . '/../public/actions/displayProducts.php';
 ?>
 
 <!DOCTYPE html>
@@ -26,6 +21,13 @@
     <div class="container">
         <div class="row">
             <div class="col">
+                <!-- #Formulaire --->
+                <div class="search_container">
+                    <form action="ProductsList.php" method="POST">
+                        <input name="search" type="text" placeholder="Rechercher ...">
+                        <input type="submit" value="Search">
+                    </form>
+                </div>
                 <div class="cardsContainer">
                     <?= DisplayProducts($pdo) ?>
                 </div>
