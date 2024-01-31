@@ -15,7 +15,7 @@ require_once __DIR__ . '/../src/init.php';
     <?php require_once __DIR__ . '/../src/partials/menu.php'; ?>
     <?php require_once __DIR__ . '/../src/partials/show_error.php'; ?>
 
-    <form action="/actions/addProduct.php" method="post">
+    <form action="/actions/modifyProduct.php" method="post">
         <div>
             <label for="name">Name:</label>
             <input type="text" name="name" id="name">
@@ -37,7 +37,7 @@ require_once __DIR__ . '/../src/init.php';
             <input type="text" name="reduction" id="reduction">
         </div>
         <div>
-            <button type="submit">Add</button>
+            <button type="submit">Modify</button>
         </div>
     </form>
 </body>

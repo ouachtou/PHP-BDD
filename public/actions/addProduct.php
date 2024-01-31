@@ -57,7 +57,6 @@ if (!is_numeric($_POST['quantity'])) {
 $st1 = $pdo->prepare('SELECT * FROM products WHERE name = ? AND type = ?');
 $st1->execute([$_POST['name'], $_POST['type']]);
 $alreadyExists = $st1->fetch(PDO::FETCH_ASSOC);
-// $alreadyExists = [ 'username' => 'edouard', .... ];
 if ($alreadyExists != false) {
     $_SESSION['error_message'] = 'A product of the same type has the same name.';
     header('Location: /addProduct.php'); // redirige utilisateur
