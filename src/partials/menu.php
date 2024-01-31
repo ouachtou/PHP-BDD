@@ -55,7 +55,7 @@
 
 <div id="navbar">
 
-    <!-- <img src='' alt='Logo'> -->
+    <img src='../../public/assets/logo.png' alt='Logo'>
     <h1 id="logo">TechShop</h1>
 
     <nav>

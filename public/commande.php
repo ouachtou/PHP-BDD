@@ -17,48 +17,42 @@ require_once __DIR__ . '/../src/init.php';
 
     <table>
         <tr>
-            <td>name</td>
-            <td>type</td>
-            <td>price</td>
-            <td>reduction</td>
-            <td>reduced price</td>
+            <th>ID Commande</th>
+            <th>Date de Commande</th>
+            <th>Produits</th>
         </tr>
 
         <?php
-        $pdoStatement = $pdo->prepare("SELECT id FROM Orders AS o
-        JOIN Users AS u ON u.id = o.id_user;
-        WHERE u.id = ?");
+        $pdoStatement = $pdo->prepare("SELECT id, created_at FROM Orders WHERE id_user = ?");
         $pdoStatement->execute([$_SESSION['user_id']]);
         $orders = $pdoStatement->fetchAll();
 
         foreach ($orders as $order) : 
-            $pdoStatement = $pdo->prepare("SELECT id_product FROM Links AS L
-            JOIN Product AS P ON P.id = l.id_product;
-            WHERE l.id = $order");
-            $pdoStatement->execute([$_SESSION['user_id']]);
-            $products = $pdoStatement->fetchAll();
-            ?>
+        ?>
             <tr>
                 <td><?= $order['id'] ?></td>
+                <td><?= $order['created_at'] ?></td>
+                <td>
+                    <ul>
+                        <?php
+                        $pdoStatement = $pdo->prepare("SELECT P.name, P.type, P.price, P.reduction
+                            FROM Links AS L
+                            JOIN Products AS P ON P.id = L.id_product
+                            WHERE L.id_order = ?");
+                        $pdoStatement->execute([$order['id']]);
+                        $products = $pdoStatement->fetchAll();
+
+                        foreach ($products as $product) :
+                        ?>
+                            <li>
+                                <?= $product['name'] ?> - <?= $product['type'] ?> - <?= $product['price'] ?> - <?= $product['reduction'] ?>%
+                            </li>
+                        <?php endforeach; ?>
+                    </ul>
+                </td>
             </tr>
-            <?
-            foreach ($products as $product) :
-                $pdoStatement = $pdo->prepare("SELECT * FROM Product AS P
-                JOIN Link AS L ON L.id_product = P.id;
-                WHERE l.id_product = $product");
-                $pdoStatement->execute([$_SESSION['user_id']]);
-                $finals = $pdoStatement->fetchAll();
-                foreach ($finals as $final) :
-            ?>
-            <tr>
-                <td><?= $product['name'] ?></td>
-                <td><?= $product['type'] ?></td>
-                <td><?= $product['price'] ?></td>
-                <td><?= $product['reduction'] ?></td>
-                <td><?= round($product['price'] * (1 - $product['reduction'] / 100), 2) ?></td>
-            </tr>
-        <?php endforeach; 
-        endforeach;
-    endforeach;?>
+        <?php endforeach; ?>
     </table>
 </body>
+
+</html>
