@@ -4,6 +4,10 @@
         padding: 0;
         box-sizing: border-box;
         font-family: Arial, Helvetica, sans-serif;
+        background-image: url('');
+        background-color: #F6F6F6;
+
+        /* background-size: contain; */
     }
 
     #navbar {

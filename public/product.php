@@ -20,9 +20,9 @@ require_once __DIR__ . '/../public/actions/displayDedicateProduct.php';
     <?php require_once __DIR__ . '/../src/partials/menu.php'; ?>
     <?php require_once __DIR__ . '/../src/partials/show_error.php'; ?>
 
-    <div id="container-PD" class="container">
-        <div id="img-PD"></div>
-        <div id="infos-PD">
+    <div class="container" id="container-PD" style="display: flex;   align-items: center;
+        justify-content: space-between; height:100%;" >
+
             <!-- <p id="name-PD">Clavier</p>
             <p id="type-PD">Accessoire</p>
             <hr>

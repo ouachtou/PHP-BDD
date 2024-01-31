@@ -18,7 +18,7 @@ require_once __DIR__ . '/../public/actions/displayProducts.php';
     <?php require_once __DIR__ . '/../src/partials/menu.php'; ?>
     <?php require_once __DIR__ . '/../src/partials/show_error.php'; ?>
 
-    <div class="container">
+    <div class="container" >
         <div class="row">
             <div class="col">
                 <!-- #Formulaire --->
@@ -29,6 +29,8 @@ require_once __DIR__ . '/../public/actions/displayProducts.php';
                     </form>
                 </div>
                 <div class="cardsContainer">
+                    <?= DisplayProducts($pdo) ?>
+                    <?= DisplayProducts($pdo) ?>
                     <?= DisplayProducts($pdo) ?>
                 </div>
             </div>
