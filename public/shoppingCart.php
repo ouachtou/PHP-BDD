@@ -9,6 +9,13 @@ require_once __DIR__ . '/../src/init.php';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TechShop - Shopping Cart</title>
+
+    <style>
+        td {
+            width: 20%;
+            text-align: center;
+        }
+    </style>
 </head>
 
 <body>
@@ -17,18 +24,18 @@ require_once __DIR__ . '/../src/init.php';
 
     <table>
         <tr>
-            <th>name</td>
-            <th>type</td>
-            <th>price</td>
-            <th>reduction</td>
-            <th>reduced price</td>
+            <th>Name</td>
+            <th>Type</td>
+            <th>Real Price</td>
+            <th>Reduction</td>
+            <th>To Pay</td>
         </tr>
 
         <?php
         $pdoStatement = $pdo->prepare("SELECT p.name, p.type, p.price, p.reduction FROM Products AS p
         JOIN Links AS l ON l.id_product = p.id
         JOIN Orders AS o ON l.id_order = o.id
-        JOIN Users AS u ON u.id = o.id_user;
+        JOIN Users AS u ON u.id = o.id_user
         WHERE u.id = ?");
         $pdoStatement->execute([$_SESSION['user_id']]);
         $products = $pdoStatement->fetchAll();
@@ -37,9 +44,9 @@ require_once __DIR__ . '/../src/init.php';
             <tr>
                 <td><?= $product['name'] ?></td>
                 <td><?= $product['type'] ?></td>
-                <td><?= $product['price'] ?></td>
-                <td><?= $product['reduction'] ?></td>
-                <td><?= round($product['price'] * (1 - $product['reduction'] / 100), 2) ?></td>
+                <td><?= $product['price'] ?>€</td>
+                <td><?= $product['reduction'] ?>%</td>
+                <td><?= round($product['price'] * (1 - $product['reduction'] / 100), 2) ?>€</td>
             </tr>
         <?php endforeach; ?>
     </table>
