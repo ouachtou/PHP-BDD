@@ -2,6 +2,12 @@
 
 // require_once __DIR__ . '/db.php';
 
+// function redirect() {
+//     header('Location: ./public/index.php');
+//     exit();
+// }
+
+
 function selectProduct() {
 
     $pdo = initDB();
@@ -33,13 +39,16 @@ function displayProduct() {
         $quantity = $rows['quantity'];
         $reduction = $rows['reduction'];
 
-        $list .= '<button class="card-P">'  ;
-        $list .= '  <div class="image-P"></div>';
-        $list .= '  <div class="infos-P"> ';
-        $list .= '      <p class="name-P">' . $name . '</p>';
-        $list .= '      <p class="price-P">' . $price . ' €</p>';
-        $list .= '  </div>';
-        $list .= ' </button>';
+        $list .= '<form action="product.php" method="post">' ;
+        $list .= '  <input type="hidden" name="id" value="'. $id .'">' ;
+        $list .= '  <button class="card-P" type="submit">' ;
+        $list .= '      <div class="image-P"></div>' ;
+        $list .= '      <div class="infos-P">' ;
+        $list .= '          <p class="name-P">'. $name .'</p>' ;
+        $list .= '          <p class="price-P">'. $price .' €</p>' ;
+        $list .= '      </div>' ;
+        $list .= '  </button>' ;
+        $list .= '</form>' ;
 
     }
 

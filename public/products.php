@@ -1,6 +1,11 @@
 <?php
-require_once __DIR__ . '/../src/init.php';
-require_once __DIR__ . '/../public/actions/displayProducts.php';
+    require_once __DIR__ . '/../src/init.php';
+    require_once __DIR__ . '/../public/actions/displayProducts.php';
+
+    function redirect() {
+        header('Location: register.php');
+        exit();
+    }
 ?>
 
 <!DOCTYPE html>
@@ -22,12 +27,33 @@ require_once __DIR__ . '/../public/actions/displayProducts.php';
         <div class="row">
             <div class="col">
                 <div class="cardsContainer">
+
                     <?= displayProduct() ?>
-                    <?= displayProduct() ?>
-                    <?= displayProduct() ?>
+                    <!-- <button class="card-P onclick=">
+                        <div class="image-P"></div>
+                        <div class="infos-P"> 
+                            <p class="name-P">clavier</p>
+                            <p class="price-P">20 €</p>
+                        </div>;
+                    </button>
+
+                    <form action="product.php" method="post">
+                        <input type="hidden" name="id" value=" <?=2 ?>">
+                        <button class="card-P" type="submit">
+                            <div class="image-P"></div>
+                            <div class="infos-P"> 
+                                <p class="name-P">clavier</p>
+                                <p class="price-P">20 €</p>
+                            </div>
+                        </button>
+                    </form> -->
+
+
                 </div>
+
             </div>
         </div>
+
     </div>
 </body>
 
