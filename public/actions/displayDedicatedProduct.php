@@ -1,24 +1,21 @@
 <?php 
 
-function selectDediProduct($idProduct) {
+function SelectDedicatedProduct($name, $type) {
 
     $pdo = initDB();
 
     try {
-        $select = $pdo->prepare('SELECT * FROM Products WHERE id=?');
-        $select -> execute([$idProduct]);
+        $select = $pdo->prepare('SELECT * FROM Products WHERE name = ? AND type = ?');
+        $select -> execute([$name, $type]);
 
-        $dediProduct = $select->fetch();
-
-        return $dediProduct;
-
+        return $select->fetch();;
     } catch (Exception $e) {
         echo 'Exception reçue : ',  $e->getMessage(), "\n";
     };
 }
 
-function displayDediProduct($idProduct){
-    $product = selectDediProduct($idProduct);
+function DisplayDedicatedProduct($name, $type){
+    $product = SelectDedicatedProduct($name, $type);
     $name = $product['name'];
     $type = $product['type'];
     $price = $product['price'];

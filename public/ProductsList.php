@@ -1,6 +1,7 @@
 <?php
 require_once __DIR__ . '/../src/init.php';
 require_once __DIR__ . '/../public/actions/displayProducts.php';
+require_once __DIR__ . '/../src/partials/head_css.php';
 ?>
 
 <!DOCTYPE html>
@@ -11,7 +12,6 @@ require_once __DIR__ . '/../public/actions/displayProducts.php';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./assets/css/products.css">
     <title>TechShop - Our Products</title>
-    <?php require_once __DIR__ . '/../src/partials/head_css.php'; ?>
 </head>
 
 <body>

@@ -50,14 +50,7 @@ if ($alreadyExists == false) {
 
 // UPDATE
 
-$st2 = $pdo->prepare('UPDATE users SET email = :email, name = :name, first_name = :first_name, phone_number = :phone_number, adress = :adress WHERE id = :id_user');
-$st2->execute([
-    ':email' => $_POST['email'],
-    ':name' => $_POST['name'],
-    ':first_name' => $_POST['first_name'],
-    ':phone_number' => $_POST['number'],
-    ':adress' => $_POST['adress'],
-    ':id_user' => $_SESSION['user_id']
-]);
+$st2 = $pdo->prepare('UPDATE users SET email = ?, name = ?, first_name = ?, phone_number = ?, adress = ? WHERE id = ?');
+$st2->execute([$_POST['email'], $_POST['name'], $_POST['first_name'], $_POST['number'], $_POST['adress'], $_SESSION['user_id']]);
 
 header('Location: /shoppingCart.php?success=1'); // $_GET['success']

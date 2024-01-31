@@ -1,7 +1,7 @@
 <?php
 require_once __DIR__ . '/../src/init.php';
-require_once __DIR__ . '/../public/actions/displayProducts.php';
-require_once __DIR__ . '/../public/actions/displayDedicateProduct.php';
+require_once __DIR__ . '/../src/partials/head_css.php';
+require_once __DIR__ . '/../public/actions/displayDedicatedProduct.php';
 ?>
 
 <!DOCTYPE html>
@@ -12,8 +12,12 @@ require_once __DIR__ . '/../public/actions/displayDedicateProduct.php';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./assets/css/products.css">
     <title>TechShop - Our Products</title>
-    <style>body{width: 100vw;height: 90vh;}</style>
-    <?php require_once __DIR__ . '/../src/partials/head_css.php'; ?>
+    <style>
+        body {
+            width: 100vw;
+            height: 90vh;
+        }
+    </style>
 </head>
 
 <body>
@@ -23,16 +27,7 @@ require_once __DIR__ . '/../public/actions/displayDedicateProduct.php';
     <div id="container-PD" class="container">
         <div id="img-PD"></div>
         <div id="infos-PD">
-            <!-- <p id="name-PD">Clavier</p>
-            <p id="type-PD">Accessoire</p>
-            <hr>
-            <p id="price-PD">20 €</p>
-            <p id="quantity-PD"><span>18</span> en stock</p>
-            <button id="addCart-PD">Ajouter au panier</button>
-            <hr>
-            <p>Liste des avis :</p> -->
-            
-            <?= displayDediProduct($_POST["id"]) ?>
+            <?= DisplayDedicatedProduct($_GET["product"], $_GET["category"]) ?>
             <a href="./login.php"></a>
         </div>
     </div>

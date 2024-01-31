@@ -27,7 +27,13 @@ require_once __DIR__ . '/../src/init.php';
         $pdoStatement->execute([$_SESSION['user_id']]);
         $orders = $pdoStatement->fetchAll();
 
-        foreach ($orders as $order) : 
+        foreach ($orders as $order) :
+            $pdoStatement = $pdo->prepare("SELECT P.name, P.type, P.price, P.reduction
+            FROM Links AS L
+            JOIN Products AS P ON P.id = L.id_product
+            WHERE L.id_order = ?");
+            $pdoStatement->execute([$order['id']]);
+            $products = $pdoStatement->fetchAll();
         ?>
             <tr>
                 <td><?= $order['id'] ?></td>
@@ -35,13 +41,6 @@ require_once __DIR__ . '/../src/init.php';
                 <td>
                     <ul>
                         <?php
-                        $pdoStatement = $pdo->prepare("SELECT P.name, P.type, P.price, P.reduction
-                            FROM Links AS L
-                            JOIN Products AS P ON P.id = L.id_product
-                            WHERE L.id_order = ?");
-                        $pdoStatement->execute([$order['id']]);
-                        $products = $pdoStatement->fetchAll();
-
                         foreach ($products as $product) :
                         ?>
                             <li>

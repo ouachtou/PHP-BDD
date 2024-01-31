@@ -25,7 +25,6 @@ function DisplayProducts($pdo)
     $list = '';
 
     foreach ($allProducts as $rows) {
-        $id = $rows['id'];
         $name = $rows['name'];
         $type = $rows['type'];
         $price = $rows['price'];
@@ -33,8 +32,9 @@ function DisplayProducts($pdo)
         $reduction = $rows['reduction'];
         $rating = $rows['rating'];
 
-        $list .= '<form action="product.php" method="post">';
-        $list .= '  <input type="hidden" name="id" value="' . $id . '">';
+        $list .= '<form action="product.php" method="GET">';
+        $list .= '  <input type="hidden" name="product" value="' . $name . '">';
+        $list .= '  <input type="hidden" name="category" value="' . $type . '">';
         $list .= '  <button class="card-P" type="submit">';
         $list .= '      <div class="image-P"></div>';
         $list .= '      <div class="infos-P">';

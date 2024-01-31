@@ -31,7 +31,8 @@
         align-items: center;
     }
 
-    #leftNav, #rightNav {
+    #leftNav,
+    #rightNav {
         display: flex;
     }
 
@@ -46,16 +47,13 @@
         font-weight: bold;
         padding: 10px 20px;
     }
+
     a:hover {
         color: #FF914D;
     }
-
 </style>
 
 <div id="navbar">
-
-    <!-- <h1 id="logo">TechShop</h1> -->
-
     <nav>
         <div id="leftNav">
             <li>
@@ -76,15 +74,15 @@
 
         <div id="rightNav">
             <?php
-            if ($user === false) { ?>
+            if ($user === false) : ?>
                 <li>
                     <a href="/register.php">Register</a>
                 </li>
                 <li>
                     <a href="/login.php">Login</a>
                 </li>
-            <?php } else { ?>
-                <?php if ($user['admin']) { ?>
+            <?php else : ?>
+                <?php if ($user['admin']) : ?>
                     <li>
                         <a href="/addProduct.php">Add Product</a>
                     </li>
@@ -94,12 +92,11 @@
                     <li>
                         <a href="/commande.php">Orders</a>
                     </li>
-                <?php } ?>
+                <?php endif; ?>
                 <li>
                     <a href="/actions/logout.php">Log OUT</a>
                 </li>
-            <?php } ?>
+            <?php endif; ?>
         </div>
     </nav>
-
 </div>
