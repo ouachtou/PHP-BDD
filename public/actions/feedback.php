@@ -25,7 +25,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $pdoStatement->execute([$userId, $productId, $comment, $note]);
 
         echo "Feedback ajouté avec succès!";
+        header('Location: /feedback.php'); // redirige utilisateur
     } else {
         echo "Vous ne pouvez pas laisser de feedback pour un produit non commandé.";
+        header('Location: /feedback.php'); // redirige utilisateur
+        die(); // stop execution du script
     }
 }
