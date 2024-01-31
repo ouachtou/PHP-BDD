@@ -1,6 +1,11 @@
 <?php
-require_once __DIR__ . '/../src/init.php';
-require_once __DIR__ . '/../public/actions/displayProducts.php';
+    require_once __DIR__ . '/../src/init.php';
+    require_once __DIR__ . '/../public/actions/displayProducts.php';
+
+    function redirect() {
+        header('Location: register.php');
+        exit();
+    }
 ?>
 
 <!DOCTYPE html>
