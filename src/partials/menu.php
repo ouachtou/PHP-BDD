@@ -68,7 +68,7 @@
                 <a href="/">Home</a>
             </li>
             <li>
-                <a href="/ProductsList.php">Products List</a>
+                <a href="/productsList.php">Products List</a>
             </li>
         </div>
 
