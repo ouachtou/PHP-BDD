@@ -8,7 +8,7 @@ require_once __DIR__ . '/../src/init.php';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="assets/bootstrap-5.3.2-dist/css/style.css">
+    <link rel="stylesheet" href="assets/css/style.css">
     <title>Login</title>
 </head>
 

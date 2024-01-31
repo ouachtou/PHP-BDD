@@ -40,6 +40,8 @@
 }
 
 .price-P {
+  display: flex;
+  justify-content: left;
   font-size: 25px;
 }
 
