@@ -29,7 +29,7 @@ require_once __DIR__ . '/../public/actions/displayProducts.php';
                     </form>
                 </div>
                 <div class="cardsContainer">
-                    <?= DisplayProducts($pdo, $_POST['Search']) ?>
+                    <?= DisplayProducts($pdo, $_POST['search']) ?>
                 </div>
             </div>
         </div>
