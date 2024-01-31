@@ -8,7 +8,6 @@ CREATE TABLE `Users` (
     `email` VARCHAR(255) NOT NULL,
     `created_at` DATETIME NOT NULL DEFAULT current_timestamp(),
     `admin` BOOLEAN DEFAULT FALSE
-    FOREIGN KEY (`id_order`) REFERENCES Orders (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE = INNODB CHARACTER SET 'utf8';
 
 CREATE TABLE `Products` (
@@ -17,7 +16,7 @@ CREATE TABLE `Products` (
     `type` VARCHAR(255) NOT NULL,
     `price` FLOAT(24) NOT NULL,
     `quantity` INT(11) NOT NULL,
-    `reduction` INT(11) NOT NULL,
+    `reduction` INT(11) NOT NULL DEFAULT 0,
     `image` VARCHAR(255) DEFAULT NULL
 ) ENGINE = INNODB CHARACTER SET 'utf8';
 
@@ -49,5 +48,7 @@ CREATE TABLE `Links`(
     FOREIGN KEY (`id_product`) REFERENCES Products (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE = INNODB CHARACTER SET 'utf8';
 
-ALTER TABLE `Users`
-ADD FOREIGN KEY (`id_order`) REFERENCES Orders (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE
+    `Users`
+ADD
+    FOREIGN KEY (`id_order`) REFERENCES Orders (`id`) ON DELETE CASCADE ON UPDATE CASCADE;

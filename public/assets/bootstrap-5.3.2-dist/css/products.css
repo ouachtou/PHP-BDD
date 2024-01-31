@@ -1,45 +1,56 @@
-
 .cardsContainer {
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap ;
-    margin-top: 50px;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  margin-top: 50px;
 }
 
 .card-P {
-    background-color: white;
-    width: 300px;
-    border-radius: 5px;
-    border: none;
-    box-shadow: 0 0 2px 2px lightgray;
-    margin: 0 10px 20px;
-
+  background-color: white;
+  width: 300px;
+  border-radius: 5px;
+  border: none;
+  box-shadow: 0 0 2px 2px lightgray;
+  margin: 0 10px 20px;
 }
 
 .card-P:hover {
-    box-shadow: 0 0 2px 2px gray;
+  box-shadow: 0 0 2px 2px gray;
 }
 
-.image-P{
-    height: 200px;
-    width: 100%;
-    border-bottom: 1px solid lightgrey;
+.image-P {
+  height: 200px;
+  width: 100%;
+  border-bottom: 1px solid lightgrey;
 }
 
 .infos-P {
-    height: 100%;
-    padding-left: 5%;
+  height: 100%;
+  padding-left: 5%;
 }
 
-.name-P, .price-P{
-    text-align: start;
-    margin: 0;
+.name-P,
+.price-P {
+  text-align: start;
+  margin: 0;
 }
 
-.name-P{
-    font-size: 20px;
+.name-P {
+  font-size: 20px;
 }
 
-.price-P{
-    font-size: 25px;
+.price-P {
+  font-size: 25px;
+}
+
+.rating-P {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+}
+
+.stars-P {
+  height: 30px;
+  object-fit: cover;
+  object-position: 0% 50%;
 }

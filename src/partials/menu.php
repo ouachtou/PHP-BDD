@@ -17,10 +17,6 @@
         box-shadow: 0 0 5px 5px grey;
     }
 
-    img {
-        width: 100px;
-    }
-
     #logo {
         color: #FF914D;
         margin-right: 2vw;
