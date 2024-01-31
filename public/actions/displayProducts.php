@@ -28,10 +28,14 @@ function DisplayProducts($pdo) {
         $list .= '  <div class="infos-P"> ';
         $list .= '      <p class="name-P">' . $name . '</p>';
         $list .= '      <p class="price-P">' . $price . ' €</p>';
+        if($quantity > 0){
+            $list .= '          <p class="quantity-P">' . $quantity . ' restante(s) </p>';
+        }else{
+            $list .= '          <p class="quantity-P"> Hors Stock </p>';
         $list .= '  </div>';
         $list .= ' </button>';
     }
-
+}
     return $list;
 }
 
