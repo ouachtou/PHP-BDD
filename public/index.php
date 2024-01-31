@@ -27,14 +27,6 @@ require_once __DIR__ . '/../src/init.php';
         </div>
     </div>
 
-    <!-- #Formulaire --->
-    <div class="search_container">
-        <form action="index.php" method="POST">
-            <input name="search" type="text" placeholder="Rechercher ...">
-            <input type="submit" value="Search">
-        </form>
-    </div>
-
     <!-- #TABLEAU --->
     <table>
         <tr>

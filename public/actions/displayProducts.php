@@ -1,11 +1,15 @@
 <?php
 require_once __DIR__ . '/../../src/init.php';
 
-function GetProducts($pdo)
+function GetProducts($pdo, $Search)
 {
+    //
+    $searchValue = isset($_POST['search']) ? $_POST['search'] : "";
+
     try {
         $st1 = $pdo->prepare('SELECT name, type, price, quantity, reduction, AVG(note) AS rating FROM Products AS p
         LEFT JOIN Feedbacks AS f ON f.id_product = p.id
+        WHERE (name LIKE ' % $searchValue % ') OR (type LIKE ' % $searchValue % ') OR (price LIKE ' % $searchValue % ')")
         GROUP BY p.id;');
         $st1->execute();
         $products = $st1->fetchAll();
@@ -16,7 +20,7 @@ function GetProducts($pdo)
     };
 }
 
-function DisplayProducts($pdo)
+function DisplayProducts($pdo, $Search)
 {
     $allProducts = GetProducts($pdo);
     $list = '';

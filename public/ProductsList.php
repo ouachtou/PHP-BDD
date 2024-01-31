@@ -21,8 +21,15 @@ require_once __DIR__ . '/../public/actions/displayProducts.php';
     <div class="container">
         <div class="row">
             <div class="col">
+                <!-- #Formulaire --->
+                <div class="search_container">
+                    <form action="ProductsList.php" method="POST">
+                        <input name="search" type="text" placeholder="Rechercher ...">
+                        <input type="submit" value="Search">
+                    </form>
+                </div>
                 <div class="cardsContainer">
-                    <?= DisplayProducts($pdo) ?>
+                    <?= DisplayProducts($pdo, $_POST['Search']) ?>
                 </div>
             </div>
         </div>
