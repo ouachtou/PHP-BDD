@@ -19,6 +19,9 @@ require_once __DIR__ . '/../src/init.php';
     <div class="form_box">
         <form action="/actions/register.php" method="post">
             <div>
+                <input placeholder="First name" type="text" name="first_name" id="first_name">
+            </div>
+            <div>
                 <input placeholder="E-mail" type="email" name="email" id="email">
             </div>
             <div>
@@ -26,15 +29,6 @@ require_once __DIR__ . '/../src/init.php';
             </div>
             <div>
                 <input placeholder="Confirm Password" type="password" name="cpassword" id="cpassword">
-            </div>
-            <div>
-                <input placeholder="First name" type="text" name="first_name" id="first_name">
-            </div>
-            <div>
-                <input placeholder="Name" type="text" name="name" id="name">
-            </div>
-            <div>
-                <input placeholder="adress" type="text" name="adress" id="adress">
             </div>
             <div>
                 <button type="submit">Register NOW!</button>

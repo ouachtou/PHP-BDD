@@ -1,12 +1,14 @@
 CREATE TABLE `Users` (
     `id` INT(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
-    `name` VARCHAR(255) NOT NULL,
+    `id_order` INT(11) DEFAULT NULL,
+    `name` VARCHAR(255) DEFAULT NULL,
     `first_name` VARCHAR(255) NOT NULL,
-    `adress` VARCHAR(255) NOT NULL,
+    `adress` VARCHAR(255) DEFAULT NULL,
     `password` VARCHAR(255) NOT NULL,
     `email` VARCHAR(255) NOT NULL,
     `created_at` DATETIME NOT NULL DEFAULT current_timestamp(),
     `admin` BOOLEAN DEFAULT FALSE
+    FOREIGN KEY (`id_order`) REFERENCES Orders (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE = INNODB CHARACTER SET 'utf8';
 
 CREATE TABLE `Products` (

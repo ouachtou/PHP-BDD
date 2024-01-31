@@ -26,7 +26,7 @@ require_once __DIR__ . '/../src/init.php';
 
         <?php
         $pdoStatement = $pdo->prepare("SELECT * FROM Products AS p
-    JOIN Link AS l ON l.id_product = p.id
+    JOIN Links AS l ON l.id_product = p.id
     JOIN Orders AS o ON l.id_order = o.id
     JOIN Users AS u ON u.id = o.id_user;
     WHERE u.id = ?");
@@ -43,4 +43,30 @@ require_once __DIR__ . '/../src/init.php';
             </tr>
         <?php endforeach; ?>
     </table>
+    <br>
+    <br>
+    <br>
+
+    <div>
+        <form action="/actions/shoppingCart.php" method="post">
+            <div>
+                <input placeholder="Name" type="text" name="name" id="name">
+            </div>
+            <div>
+                <input placeholder="First name" type="text" name="first_name" id="first_name">
+            </div>
+            <div>
+                <input placeholder="E-mail" type="email" name="email" id="email">
+            </div>
+            <div>
+                <input placeholder="Adress" type="text" name="adress" id="adress">
+            </div>
+            <div>
+                <input placeholder="Number" type="tel" name="Number" id="Number">
+            </div>
+            <div>
+                <button type="submit">Order</button>
+            </div>
+        </form>
+    </div>
 </body>
