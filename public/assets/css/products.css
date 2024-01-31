@@ -57,6 +57,12 @@
   object-position: 0% 50%;
 }
 
+.search_container {
+  padding-top: 10%;
+  display: flex;
+  justify-content: space-around;
+}
+
 /* ==================== */
 /* CSS PRODUITS DÉDIÉES */
 /* ==================== */
