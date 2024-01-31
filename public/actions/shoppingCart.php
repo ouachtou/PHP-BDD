@@ -31,7 +31,7 @@ if (strlen($_POST['number']) < 10) {
 }
 
 if (empty($_POST['adress'])) {
-    $_SESSION['error_message'] = "Invalide ";
+    $_SESSION['error_message'] = "Invalide";
     header('Location: /shoppingCart.php'); // redirige utilisateur
     die(); // stop execution du script
 }
