@@ -25,7 +25,7 @@ require_once __DIR__ . '/../src/init.php';
         </tr>
 
         <?php
-        $pdoStatement = $pdo->prepare("SELECT * FROM Products AS p
+        $pdoStatement = $pdo->prepare("SELECT p.name, p.type, p.price, p.reduction FROM Products AS p
         JOIN Links AS l ON l.id_product = p.id
         JOIN Orders AS o ON l.id_order = o.id
         JOIN Users AS u ON u.id = o.id_user;
