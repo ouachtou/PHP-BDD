@@ -22,9 +22,7 @@ require_once __DIR__ . '/../public/actions/displayProducts.php';
         <div class="row">
             <div class="col">
                 <div class="cardsContainer">
-                    <?= displayProduct() ?>
-                    <?= displayProduct() ?>
-                    <?= displayProduct() ?>
+                    <?= DisplayProducts($pdo) ?>
                 </div>
             </div>
         </div>

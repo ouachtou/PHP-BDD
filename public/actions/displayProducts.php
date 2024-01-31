@@ -1,32 +1,22 @@
 <?php
+require_once __DIR__ . '/../../src/init.php';
 
-// require_once __DIR__ . '/db.php';
-
-function selectProduct() {
-
-    $pdo = initDB();
-
+function GetProducts($pdo) {
     try {
         $select = $pdo->prepare('SELECT * FROM Products');
         $select -> execute();
 
-        $allProducts = $select->fetchAll();
-
-        return $allProducts;
-
+        return $select->fetchAll();
     } catch (Exception $e) {
         echo 'Exception reçue : ',  $e->getMessage(), "\n";
     };
 }
 
-function displayProduct() {
-
-    $allProducts = selectProduct();
-
+function DisplayProducts($pdo) {
+    $allProducts = GetProducts($pdo);
     $list = '';
 
     foreach($allProducts as $rows){
-        $id = $rows['id'];
         $name = $rows['name'];
         $type = $rows['type'];
         $price = $rows['price'];
@@ -40,7 +30,6 @@ function displayProduct() {
         $list .= '      <p class="price-P">' . $price . ' €</p>';
         $list .= '  </div>';
         $list .= ' </button>';
-
     }
 
     return $list;
