@@ -16,9 +16,9 @@ if (empty($_POST['type'])) {
     die(); // stop execution du script
 }
 
-$st1 = $pdo->prepare('SELECT * FROM products WHERE name = ? AND type = ?');
-$st1->execute([$_POST['name'], $_POST['type']]);
-$product = $st1->fetch(PDO::FETCH_ASSOC);
+$getProduct = $pdo->prepare('SELECT * FROM products WHERE name = ? AND type = ?');
+$getProduct->execute([$_POST['name'], $_POST['type']]);
+$product = $getProduct->fetch(PDO::FETCH_ASSOC);
 
 if (empty($product)) {
     $_SESSION['error_message'] = 'No product found.';
@@ -59,7 +59,7 @@ if (empty($_POST['reduction'])) {
     }
 }
 
-$st2 = $pdo->prepare('UPDATE Products SET price = ?, quantity = ?, reduction = ? WHERE name = ? AND type = ?');
-$st2->execute([$_POST['price'], $_POST['quantity'], $_POST['reduction'], $_POST['name'], $_POST['type']]);
+$updateProduct = $pdo->prepare('UPDATE Products SET price = ?, quantity = ?, reduction = ? WHERE name = ? AND type = ?');
+$updateProduct->execute([$_POST['price'], $_POST['quantity'], $_POST['reduction'], $_POST['name'], $_POST['type']]);
 
 header('Location: /modifyProduct.php?success=1'); // $_GET['success']
