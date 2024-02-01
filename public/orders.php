@@ -74,13 +74,13 @@ require_once __DIR__ . '/../src/init.php';
                     <?php if ($user['admin'] === 1 && $_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['order_id'], $_POST['new_status'])) {
                             $order_id = $_POST['order_id'];
                             $new_status = $_POST['new_status'];
-                            $pdoStatement = $pdo->prepare("UPDATE Orders SET status = ? WHERE id = ?");
+                            $pdoStatement = $pdo->prepare("UPDATE Orders SET status = ?, updated_at = current_timestamp() WHERE id = ?");
                             $pdoStatement->execute([$new_status, $order_id]);
+                            echo '<script>window.location="orders.php"</script>';
                             }
                     ?>
             </tr>
         <?php endforeach; ?>
     </table>
 </body>
-
 </html>
