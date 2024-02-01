@@ -57,6 +57,27 @@ require_once __DIR__ . '/../src/init.php';
                         <?php endforeach; ?>
                     </ul>
                 </td>
+                <?php if ($user['admin'] === 1) : ?>
+                    <td>
+                        <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+                            <input type="hidden" name="order_id" value="<?= $order['id'] ?>">
+                            <select name="new_status">
+                                <option value="New">New</option>
+                                <option value="Sent">Sent</option>
+                                <option value="Finished">Finished</option>
+                                <option value="Returned">Returned</option>
+                            </select>
+                            <button type="submit">Change status</button>
+                        </form>
+                    </td>
+                    <?php endif;?>
+                    <?php if ($user['admin'] === 1 && $_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['order_id'], $_POST['new_status'])) {
+                            $order_id = $_POST['order_id'];
+                            $new_status = $_POST['new_status'];
+                            $pdoStatement = $pdo->prepare("UPDATE Orders SET status = ? WHERE id = ?");
+                            $pdoStatement->execute([$new_status, $order_id]);
+                            }
+                    ?>
             </tr>
         <?php endforeach; ?>
     </table>
