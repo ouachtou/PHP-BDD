@@ -19,11 +19,12 @@ require_once __DIR__ . '/../src/init.php';
         <tr>
             <th>Order's ID</th>
             <th>Order's Date</th>
+            <th>Status</th>
             <th>Products</th>
         </tr>
 
         <?php
-        $pdoStatement = $pdo->prepare("SELECT id, created_at FROM Orders WHERE id_user = ?");
+        $pdoStatement = $pdo->prepare("SELECT id, created_at, status FROM Orders WHERE id_user = ?");
         $pdoStatement->execute([$_SESSION['user_id']]);
         $orders = $pdoStatement->fetchAll();
 
@@ -38,6 +39,7 @@ require_once __DIR__ . '/../src/init.php';
             <tr>
                 <td><?= $order['id'] ?></td>
                 <td><?= $order['created_at'] ?></td>
+                <td><?= $order['status'] ?></td>
                 <td>
                     <ul>
                         <?php
