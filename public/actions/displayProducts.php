@@ -3,11 +3,14 @@ require_once __DIR__ . '/../../src/init.php';
 
 function GetProducts($pdo)
 {
-    $getProducts = $pdo->prepare("SELECT *, AVG(note) AS rating FROM Products AS p
+    $searchValue = isset($_POST['search']) ? $_POST['search'] : "";
+
+    $st1 = $pdo->prepare("SELECT *, AVG(note) AS rating FROM Products AS p
     LEFT JOIN Feedbacks AS f ON f.id_product = p.id
+    WHERE (p.name LIKE'%$searchValue%') OR (p.type LIKE'%$searchValue%') OR (p.price LIKE'%$searchValue%')
     GROUP BY p.id;");
-    $getProducts->execute();
-    $products = $getProducts->fetchAll();
+    $st1->execute();
+    $products = $st1->fetchAll();
 
     return $products;
 }
