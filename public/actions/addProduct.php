@@ -55,9 +55,9 @@ if (!is_numeric($_POST['quantity'])) {
 
 
 // verifier qu'aucun n'objet n'a le meme nom et le meme type dans la DB
-$st1 = $pdo->prepare('SELECT * FROM products WHERE name = ? AND type = ?');
-$st1->execute([$_POST['name'], $_POST['type']]);
-$alreadyExists = $st1->fetch(PDO::FETCH_ASSOC);
+$checkProduct = $pdo->prepare('SELECT * FROM products WHERE name = ? AND type = ?');
+$checkProduct->execute([$_POST['name'], $_POST['type']]);
+$alreadyExists = $checkProduct->fetch(PDO::FETCH_ASSOC);
 if ($alreadyExists != false) {
     $_SESSION['error_message'] = 'A product of the same type has the same name.';
     header('Location: /addProduct.php'); // redirige utilisateur
@@ -65,7 +65,7 @@ if ($alreadyExists != false) {
 }
 
 // INSERT
-$st2 = $pdo->prepare('INSERT INTO products(name, type, price, quantity, image) VALUES(?, ?, ?, ?, ?)');
-$st2->execute([$_POST['name'], $_POST['type'], $_POST['price'], $_POST['quantity'], $_POST['image']]);
+$insertProduct = $pdo->prepare('INSERT INTO products(name, type, price, quantity, image) VALUES(?, ?, ?, ?, ?)');
+$insertProduct->execute([$_POST['name'], $_POST['type'], $_POST['price'], $_POST['quantity'], $_POST['image']]);
 
 header('Location: /addProduct.php?success=1'); // $_GET['success']

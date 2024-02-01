@@ -3,18 +3,13 @@ require_once __DIR__ . '/../../src/init.php';
 
 function GetProducts($pdo)
 {
-    try {
-        $st1 = $pdo->prepare("SELECT *, AVG(note) AS rating FROM Products AS p
-        LEFT JOIN Feedbacks AS f ON f.id_product = p.id
-        GROUP BY p.id;");
-        $st1->execute();
-        $products = $st1->fetchAll();
+    $getProducts = $pdo->prepare("SELECT *, AVG(note) AS rating FROM Products AS p
+    LEFT JOIN Feedbacks AS f ON f.id_product = p.id
+    GROUP BY p.id;");
+    $getProducts->execute();
+    $products = $getProducts->fetchAll();
 
-
-        return $products;
-    } catch (Exception $e) {
-        echo 'Exception reçue : ',  $e->getMessage(), "\n";
-    };
+    return $products;
 }
 
 function DisplayProducts($pdo)

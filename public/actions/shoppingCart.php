@@ -37,9 +37,9 @@ if (empty($_POST['adress'])) {
 }
 
 // verifier que l'email n'est pas deja en DB et correspond à un autre utlisateur
-$st1 = $pdo->prepare('SELECT * FROM users WHERE email = ? ');
-$st1->execute([$_POST['email']]);
-$alreadyExists = $st1->fetch(PDO::FETCH_ASSOC);
+$checkMail = $pdo->prepare('SELECT * FROM users WHERE email = ? ');
+$checkMail->execute([$_POST['email']]);
+$alreadyExists = $checkMail->fetch(PDO::FETCH_ASSOC);
 
 // $alreadyExists = [ 'username' => 'edouard', .... ];
 if ($alreadyExists == false) {
@@ -49,8 +49,15 @@ if ($alreadyExists == false) {
 }
 
 // UPDATE
+$updateUser = $pdo->prepare('UPDATE Users SET email = ?, name = ?, first_name = ?, phone_number = ?, adress = ? WHERE id = ?');
+$updateUser->execute([$_POST['email'], $_POST['name'], $_POST['first_name'], $_POST['number'], $_POST['adress'], $user['id']]);
 
-$st2 = $pdo->prepare('UPDATE users SET email = ?, name = ?, first_name = ?, phone_number = ?, adress = ? WHERE id = ?');
-$st2->execute([$_POST['email'], $_POST['name'], $_POST['first_name'], $_POST['number'], $_POST['adress'], $_SESSION['user_id']]);
+// Set order's status to "sent" 
+$updateStatus = $pdo->prepare('UPDATE Orders SET status = "Sent" WHERE status = "New" AND id IN (SELECT id_order FROM Users WHERE id = ?)');
+$updateStatus->execute([$user['id']]);
+
+// Set user's order ID to NULL 
+$pdo->exec('UPDATE Users SET id_order = NULL');
+
 
 header('Location: /shoppingCart.php?success=1'); // $_GET['success']

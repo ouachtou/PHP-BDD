@@ -2,17 +2,17 @@
 require_once __DIR__ . '/../../src/init.php';
 
 $getUserOrder = $pdo->prepare('SELECT id_order FROM Users WHERE id = ?');
-$getUserOrder->execute([$_SESSION['user_id']]);
+$getUserOrder->execute([$user['id']]);
 $userOrder = $getUserOrder->fetch()['id_order'];
 
 if ($userOrder === NULL) {
     $insertOrder = $pdo->prepare('INSERT INTO Orders (id_user, status) VALUES (?, ?);');
-    $insertOrder->execute([$_SESSION['user_id'], "En panier"]);
+    $insertOrder->execute([$user['id'], "En panier"]);
 
     $userOrder = $pdo->lastInsertId();
 
     $setUserOrder = $pdo->prepare('UPDATE Users SET id_order = ? WHERE Users.id = ?');
-    $setUserOrder->execute([$userOrder, $_SESSION['user_id']]);
+    $setUserOrder->execute([$userOrder, $user['id']]);
 }
 
 $insertProduct = $pdo->prepare('INSERT INTO Links (id_order, id_product) VALUES (?, ?);');

@@ -37,7 +37,7 @@ require_once __DIR__ . '/../src/init.php';
         JOIN Orders AS o ON l.id_order = o.id
         JOIN Users AS u ON u.id = o.id_user
         WHERE u.id = ?");
-        $pdoStatement->execute([$_SESSION['user_id']]);
+        $pdoStatement->execute([$user['id']]);
         $products = $pdoStatement->fetchAll();
 
         foreach ($products as $product) : ?>
