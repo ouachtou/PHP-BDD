@@ -66,21 +66,22 @@
             <li>
                 <a href="/productsList.php">Products List</a>
             </li>
-            <li>
-                <a href="/shoppingCart.php">Shopping Cart</a>
-            </li>
-            <li>
-                <a href="/feedback.php">Rate product</a>
-            </li>
+            <?php if ($user) : ?>
+                <li>
+                    <a href="/shoppingCart.php">Shopping Cart</a>
+                </li>
+                <li>
+                    <a href="/feedback.php">Rate product</a>
+                </li>
+            <?php endif; ?>
         </div>
     </nav>
 
-        <img id='img-logo' src='assets/logo.png' alt='Logo'>
+    <img id='img-logo' src='assets/logo.png' alt='Logo'>
 
     <nav>
         <div id="rightNav">
-            <?php
-            if ($user === false) : ?>
+            <?php if (!$user) : ?>
                 <li>
                     <a href="/register.php">Register</a>
                 </li>
