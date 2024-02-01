@@ -27,7 +27,7 @@ require_once __DIR__ . '/../public/actions/displayDedicatedProduct.php';
     <div id="container-PD" class="container">
 
             <?= DisplayDedicatedProduct($pdo, $_GET["product"], $_GET["category"]) ?>
-            <a href="./login.php"></a>
+
         </div>
     </div>
 </body>
