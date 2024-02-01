@@ -7,6 +7,7 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
     $user = $getUser->fetch();
     if ($user && password_verify($_POST['password'], $user['password'])) {
         $_SESSION['user_id'] = $user['id'];
+        $_SESSION['admin'] = $user['admin'];
         header('Location: /index.php');
     } else {
         $_SESSION['error_message'] = 'Mauvais identifiants';
