@@ -25,6 +25,7 @@ function DisplayDedicatedProduct($pdo, $name, $type)
 
     $list = '';
     $list .= '<img id="img-PD" src="' . $img . '" ></img>';
+    $list .= '<div id="infos-PD">';
     $list .= '<p id="name-PD">' . $name . '</p>';
     $list .= '<p id="type-PD">' . $type . '</p>';
 
@@ -40,6 +41,7 @@ function DisplayDedicatedProduct($pdo, $name, $type)
     $list .= '<hr>';
 
     $list .= '<p>Liste des avis :</p>';
+    $list .= '</div>';
 
     return $list;
 }

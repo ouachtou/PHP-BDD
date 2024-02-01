@@ -37,6 +37,10 @@ require_once __DIR__ . '/../src/init.php';
             <input type="text" name="reduction" id="reduction">
         </div>
         <div>
+            <label for="image">Image:</label>
+            <input type="text" name="image" id="image">
+        </div>
+        <div>
             <button type="submit">Add</button>
         </div>
     </form>
