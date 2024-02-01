@@ -1,20 +1,14 @@
 <?php
 function GetOrders($pdo)
 {
-    try {
-        $pdoStatement = $pdo->prepare("SELECT * FROM Orders ");
+    if (!empty($_POST['order'])) {
+        $request = "SELECT * FROM Orders ORDER BY " . $_POST['order'] . " ASC";
+        $pdoStatement = $pdo->prepare($request);
         $pdoStatement->execute();
-        $orders = $pdoStatement->fetchAll();
-        return $orders;
-    } catch (Exception $e) {
-        echo 'Exception reçue : ',  $e->getMessage(), "\n";
+        return $pdoStatement->fetchAll();
+    } else {
+        $pdoStatement = $pdo->prepare("SELECT * FROM Orders");
+        $pdoStatement->execute();
+        return $pdoStatement->fetchAll();
     }
 };
-
-function FiltersOrders($pdo)
-{
-    $allOrders = GetOrders($pdo);
-
-    if ($_POST['new']) {
-    }
-}
