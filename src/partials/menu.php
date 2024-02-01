@@ -97,7 +97,7 @@
                         <a href="/modifyProduct.php">Modify Product</a>
                     </li>
                     <li>
-                        <a href="/commande.php">Orders</a>
+                        <a href="/orders.php">Orders</a>
                     </li>
                 <?php endif; ?>
                 <li>
