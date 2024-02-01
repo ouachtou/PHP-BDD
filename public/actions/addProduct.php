@@ -38,7 +38,7 @@ if (!empty($_POST['reduction'])) {
         die(); // stop execution du script
     }
 }
-
+ 
 if (!is_numeric($_POST['price'])) {
     // error
     $_SESSION['error_message'] = 'Price must be a number.';
@@ -53,6 +53,7 @@ if (!is_numeric($_POST['quantity'])) {
     die(); // stop execution du script
 }
 
+
 // verifier qu'aucun n'objet n'a le meme nom et le meme type dans la DB
 $st1 = $pdo->prepare('SELECT * FROM products WHERE name = ? AND type = ?');
 $st1->execute([$_POST['name'], $_POST['type']]);
@@ -64,7 +65,7 @@ if ($alreadyExists != false) {
 }
 
 // INSERT
-$st2 = $pdo->prepare('INSERT INTO products(name, type, price, quantity) VALUES(?, ?, ?, ?)');
-$st2->execute([$_POST['name'], $_POST['type'], $_POST['price'], $_POST['quantity']]);
+$st2 = $pdo->prepare('INSERT INTO products(name, type, price, quantity, image) VALUES(?, ?, ?, ?, ?)');
+$st2->execute([$_POST['name'], $_POST['type'], $_POST['price'], $_POST['quantity'], $_POST['image']]);
 
 header('Location: /addProduct.php?success=1'); // $_GET['success']

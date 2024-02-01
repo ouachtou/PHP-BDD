@@ -25,8 +25,7 @@ require_once __DIR__ . '/../public/actions/displayDedicatedProduct.php';
     <?php require_once __DIR__ . '/../src/partials/show_error.php'; ?>
 
     <div id="container-PD" class="container">
-        <div id="img-PD"></div>
-        <div id="infos-PD">
+
             <?= DisplayDedicatedProduct($pdo, $_GET["product"], $_GET["category"]) ?>
             <a href="./login.php"></a>
         </div>
