@@ -26,14 +26,10 @@ function SelectFeedbacks($pdo, $idProduct) {
 
 function SelectDedicatedProduct($pdo, $name, $type)
 {
-    try {
-        $select = $pdo->prepare('SELECT * FROM Products WHERE name = ? AND type = ?');
-        $select->execute([$name, $type]);
+    $select = $pdo->prepare('SELECT * FROM Products WHERE name = ? AND type = ?');
+    $select->execute([$name, $type]);
 
-        return $select->fetch();
-    } catch (Exception $e) {
-        echo 'Exception reçue : ',  $e->getMessage(), "\n";
-    };
+    return $select->fetch();
 }
 
 function DisplayDedicatedProduct($pdo, $name, $type)
