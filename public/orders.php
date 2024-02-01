@@ -1,6 +1,6 @@
 <?php
 require_once __DIR__ . '/../src/init.php';
-?>
+require_once __DIR__ . '/../public/actions/filterOrder.php'; ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -22,6 +22,39 @@ require_once __DIR__ . '/../src/init.php';
     <?php require_once __DIR__ . '/../src/partials/show_error.php'; ?>
 
     <table>
+    <section class="filtre">
+        <legend>Status :</legend>
+
+        <div>
+            <input type="checkbox" id="new" value="" />
+            <label for="new">New</label>
+        </div>
+
+        <div>
+            <input type="checkbox" id="sent" value="" />
+            <label for="sent">Sent</label>
+        </div>
+
+        <div>
+            <input type="checkbox" id="finished" value="" />
+            <label for="finished">Finished</label>
+        </div>
+        <div>
+            <input type="checkbox" id="returned" value="" />
+            <label for="returned">Returned</label>
+        </div>
+
+        <legend>Date :</legend>
+        <div>
+            <input type="radio" id="created_at" value="" />
+            <label for="created_at">Created at</label>
+        </div>
+        <div>
+            <input type="radio" id="updated_at" value="" />
+            <label for="updated_at">Updated at</label>
+        </div>
+    </section>
+    
         <tr>
             <th>Order's ID</th>
             <th>Order's Date</th>
@@ -30,9 +63,7 @@ require_once __DIR__ . '/../src/init.php';
         </tr>
 
         <?php
-        $pdoStatement = $pdo->prepare("SELECT id, created_at FROM Orders ");
-        $pdoStatement->execute();
-        $orders = $pdoStatement->fetchAll();
+        $orders = GetOrders($pdo);
 
         foreach ($orders as $order) :
             $pdoStatement = $pdo->prepare("SELECT P.name, P.type, P.price, P.reduction
