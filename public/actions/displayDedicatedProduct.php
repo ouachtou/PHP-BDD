@@ -1,30 +1,23 @@
 <?php
 require_once __DIR__ . '/../../src/init.php';
 
-function SelectName($pdo, $id_user){
-    try {
-        $select = $pdo->prepare('SELECT first_name FROM Users WHERE id = ?');
-        $select->execute([$id_user]);
+function GetUserName($pdo, $id_user)
+{
+    $select = $pdo->prepare('SELECT first_name FROM Users WHERE id = ?');
+    $select->execute([$id_user]);
 
-        return $select->fetch();
-    } catch (Exception $e) {
-        echo 'Exception reçue : ',  $e->getMessage(), "\n";
-    };
+    return $select->fetch()['first_name'];
 }
 
-function SelectFeedbacks($pdo, $idProduct) {
-    try {
-        $select = $pdo->prepare('SELECT comment, note, id_user FROM Feedbacks WHERE id_product = ?');
-        $select->execute([$idProduct]);
+function GetFeedbacks($pdo, $idProduct)
+{
+    $select = $pdo->prepare('SELECT comment, note, id_user FROM Feedbacks WHERE id_product = ?');
+    $select->execute([$idProduct]);
 
-
-        return $select->fetchAll();
-    } catch (Exception $e) {
-        echo 'Exception reçue : ',  $e->getMessage(), "\n";
-    };
+    return $select->fetchAll();
 }
 
-function SelectDedicatedProduct($pdo, $name, $type)
+function GetDedicatedProduct($pdo, $name, $type)
 {
     $select = $pdo->prepare('SELECT * FROM Products WHERE name = ? AND type = ?');
     $select->execute([$name, $type]);
@@ -34,14 +27,14 @@ function SelectDedicatedProduct($pdo, $name, $type)
 
 function DisplayDedicatedProduct($pdo, $name, $type)
 {
-    $product = SelectDedicatedProduct($pdo, $name, $type);
+    $product = GetDedicatedProduct($pdo, $name, $type);
     $id = $product['id'];
     $name = $product['name'];
     $type = $product['type'];
     $price = $product['price'];
     $quantity = $product['quantity'];
     $img = $product['image'];
-    
+
     $list = '';
     $list .= '<img id="img-PD" src="' . $img . '" ></img>';
     $list .= '<div id="infos-PD">';
@@ -60,25 +53,18 @@ function DisplayDedicatedProduct($pdo, $name, $type)
     $list .= '<hr>';
 
     $list .= '<h4>Les avis :</h4>';
-    
-    $feed = SelectFeedbacks($pdo, $id);
 
+    $feedbacks = GetFeedbacks($pdo, $id);
 
-
-    foreach ($feed as $rows) {
+    foreach ($feedbacks as $rows) {
         $comment = $rows['comment'];
         $note = $rows['note'];
-        $idUser = $rows['id_user'];
-
-        $selectname = (SelectName($pdo, $rows['id_user'] ));
-        
-        $nameUser = $selectname['first_name'];
+        $UserName = GetUserName($pdo, $rows['id_user']);
 
         $list .= '<div style="background-color: white;border-radius: 5px; margin: 5px 0; border: 1px solid grey; padding: 5px">';
-        $list .= '<h5 style="font-weight:bold;">'. $nameUser . "</h5>";
-        $list .= '<p> <span style="font-size:20px ;font-weight:bold;">'. $note .'/5 : </span> '. $comment .'</p>';
+        $list .= '<h5 style="font-weight:bold;">' . $UserName . "</h5>";
+        $list .= '<p> <span style="font-size:20px ;font-weight:bold;">' . $note / 2 . '/5 : </span> ' . $comment . '</p>';
         $list .= '</div>';
-
     }
 
     return $list;
