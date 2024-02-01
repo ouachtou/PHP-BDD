@@ -3,10 +3,6 @@ require_once __DIR__ . '/../../src/init.php';
 
 function DeleteProduct($pdo, $idProduct)
 {
-    try {
-        $delete = $pdo->prepare('DELETE FROM Products WHERE id = ?');
-        $delete->execute([$idProduct]);
-    } catch (Exception $e) {
-        echo 'Exception : ',  $e->getMessage(), "\n";
-    };
+    $delete = $pdo->prepare('DELETE FROM Products WHERE id = ?');
+    $delete->execute([$idProduct]);
 }
