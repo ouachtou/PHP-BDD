@@ -9,6 +9,12 @@ require_once __DIR__ . '/../src/init.php';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TechShop - Orders</title>
+    <style>
+        td, th {
+            width: 25%;
+            text-align: center;
+        }
+    </style>
 </head>
 
 <body>
