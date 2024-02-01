@@ -77,8 +77,8 @@
 
 #container-PD {
   height: 100%;
+  margin-top: 50px;
   display: flex;
-  align-items: center;
   justify-content: space-between;
 }
 
@@ -91,13 +91,12 @@
 }
 
 #infos-PD {
-  /* background-color: rgb(240, 240, 240); */
-  height: 80%;
+
   width: 100%;
   padding-left: 20px;
   display: flex;
   flex-direction: column;
-  /* justify-content: center; */
+
 }
 
 #name-PD, #type-PD, #price-PD, #quantity-PD {

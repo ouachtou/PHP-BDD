@@ -1,13 +1,36 @@
 <?php
 require_once __DIR__ . '/../../src/init.php';
 
+function SelectName($pdo, $id_user){
+    try {
+        $select = $pdo->prepare('SELECT first_name FROM Users WHERE id = ?');
+        $select->execute([$id_user]);
+
+        return $select->fetch();
+    } catch (Exception $e) {
+        echo 'Exception reçue : ',  $e->getMessage(), "\n";
+    };
+}
+
+function SelectFeedbacks($pdo, $idProduct) {
+    try {
+        $select = $pdo->prepare('SELECT comment, note, id_user FROM Feedbacks WHERE id_product = ?');
+        $select->execute([$idProduct]);
+
+
+        return $select->fetchAll();
+    } catch (Exception $e) {
+        echo 'Exception reçue : ',  $e->getMessage(), "\n";
+    };
+}
+
 function SelectDedicatedProduct($pdo, $name, $type)
 {
     try {
         $select = $pdo->prepare('SELECT * FROM Products WHERE name = ? AND type = ?');
         $select->execute([$name, $type]);
 
-        return $select->fetch();;
+        return $select->fetch();
     } catch (Exception $e) {
         echo 'Exception reçue : ',  $e->getMessage(), "\n";
     };
@@ -22,7 +45,7 @@ function DisplayDedicatedProduct($pdo, $name, $type)
     $price = $product['price'];
     $quantity = $product['quantity'];
     $img = $product['image'];
-
+    
     $list = '';
     $list .= '<img id="img-PD" src="' . $img . '" ></img>';
     $list .= '<div id="infos-PD">';
@@ -40,8 +63,27 @@ function DisplayDedicatedProduct($pdo, $name, $type)
 
     $list .= '<hr>';
 
-    $list .= '<p>Liste des avis :</p>';
-    $list .= '</div>';
+    $list .= '<h4>Les avis :</h4>';
+    
+    $feed = SelectFeedbacks($pdo, $id);
+
+
+
+    foreach ($feed as $rows) {
+        $comment = $rows['comment'];
+        $note = $rows['note'];
+        $idUser = $rows['id_user'];
+
+        $selectname = (SelectName($pdo, $rows['id_user'] ));
+        
+        $nameUser = $selectname['first_name'];
+
+        $list .= '<div style="background-color: white;border-radius: 5px; margin: 5px 0; border: 1px solid grey; padding: 5px">';
+        $list .= '<h5 style="font-weight:bold;">'. $nameUser . "</h5>";
+        $list .= '<p> <span style="font-size:20px ;font-weight:bold;">'. $note .'/5 : </span> '. $comment .'</p>';
+        $list .= '</div>';
+
+    }
 
     return $list;
 }
