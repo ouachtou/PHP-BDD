@@ -23,8 +23,8 @@ require_once __DIR__ . '/../src/init.php';
         </tr>
 
         <?php
-        $pdoStatement = $pdo->prepare("SELECT id, created_at FROM Orders WHERE id_user = ?");
-        $pdoStatement->execute([$_SESSION['user_id']]);
+        $pdoStatement = $pdo->prepare("SELECT id, created_at FROM Orders ");
+        $pdoStatement->execute();
         $orders = $pdoStatement->fetchAll();
 
         foreach ($orders as $order) :
