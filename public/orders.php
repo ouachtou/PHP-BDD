@@ -74,7 +74,9 @@ require_once __DIR__ . '/../public/actions/filterOrder.php';
             if (!((empty($_POST['new']) && $order['status'] == "New")
                 || (empty($_POST['sent']) && $order['status'] == "Sent")
                 || (empty($_POST['finished']) && $order['status'] == "Finished")
-                || (empty($_POST['returned']) && $order['status'] == "Returned"))) :
+                || (empty($_POST['returned']) && $order['status'] == "Returned"))
+                || (empty($_POST['new']) && empty($_POST['sent']) && empty($_POST['finished']) && empty($_POST['returned']))):
+
                 $pdoStatement = $pdo->prepare("SELECT P.name, P.type, P.price, P.reduction
                 FROM Links AS L
                 JOIN Products AS P ON P.id = L.id_product
@@ -92,7 +94,7 @@ require_once __DIR__ . '/../public/actions/filterOrder.php';
                             foreach ($products as $product) :
                             ?>
                                 <li>
-                                    <?= $product['name'] ?> - <?= $product['type'] ?> - <?= $product['price'] ?> - <?= $product['reduction'] ?>%
+                                    <?= $product['name'] ?> - <?= $product['type'] ?> - <?= $product['price'] ?> - <?= $product['reduction'] ?>
                                 </li>
                             <?php endforeach; ?>
                         </ul>
@@ -118,9 +120,10 @@ require_once __DIR__ . '/../public/actions/filterOrder.php';
                         $pdoStatement->execute([$new_status, $order_id]);
                     }
                     ?>
-                </tr>
-        <?php endif;
-        endforeach; ?>
+                </tr>                    
+        <?php endif; ?>
+
+        <?php endforeach; ?>
     </table>
 </body>
 
