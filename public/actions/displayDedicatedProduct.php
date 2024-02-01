@@ -2,11 +2,9 @@
 require_once __DIR__ . '/../../src/init.php';
 
 function SelectName($pdo, $id_user){
-    
     try {
-        $select = $pdo->prepare('SELECT name FROM Users WHERE id = ?');
+        $select = $pdo->prepare('SELECT first_name FROM Users WHERE id = ?');
         $select->execute([$id_user]);
-
 
         return $select->fetch();
     } catch (Exception $e) {
@@ -75,14 +73,15 @@ function DisplayDedicatedProduct($pdo, $name, $type)
         $comment = $rows['comment'];
         $note = $rows['note'];
         $idUser = $rows['id_user'];
-        echo $idUser;
 
-        SelectName($pdo, $rows['id_user'] );
+        $selectname = (SelectName($pdo, $rows['id_user'] ));
         
-        // $nameUser = $selectname['name'];
+        $nameUser = $selectname['first_name'];
 
-        // $list .= '<h5>'. $nameUser . "</h5>";
-        $list .= '<p>'. $note .'/5 : '. $comment .'</p>';
+        $list .= '<div style="background-color: white;border-radius: 5px; margin: 5px 0; border: 1px solid grey; padding: 5px">';
+        $list .= '<h5 style="font-weight:bold;">'. $nameUser . "</h5>";
+        $list .= '<p> <span style="font-size:20px ;font-weight:bold;">'. $note .'/5 : </span> '. $comment .'</p>';
+        $list .= '</div>';
 
     }
 
