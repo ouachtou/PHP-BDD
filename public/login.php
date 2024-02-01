@@ -1,4 +1,5 @@
 <?php
+// Inclusion du fichier d'initialisation
 require_once __DIR__ . '/../src/init.php';
 ?>
 
@@ -13,23 +14,28 @@ require_once __DIR__ . '/../src/init.php';
 </head>
 
 <body>
-    <?php require_once __DIR__ . '/../src/partials/menu.php'; ?>
-    <?php require_once __DIR__ . '/../src/partials/show_error.php'; ?>
+    <?php
+    // Inclusion du menu
+    require_once __DIR__ . '/../src/partials/menu.php';
+    // Inclusion du gestionnaire d'erreurs
+    require_once __DIR__ . '/../src/partials/show_error.php';
+    ?>
 
     <div class="form_box">
         <form action="/actions/login.php" method="post">
+            <!-- Champs du formulaire de connexion -->
             <div>
                 <input placeholder="Email" type="email" name="email" id="email">
             </div>
             <div>
-                <input placeholder="password" type="password" name="password" id="password">
+                <input placeholder="Password" type="password" name="password" id="password">
             </div>
             <div>
                 <label for="rememberme">Remember Me</label>
                 <input type="checkbox" name="rememberme" id="rememberme" value="yes">
             </div>
             <div>
-                <button class="submit" type="submit">LOG ME IN !</button>
+                <button class="submit" type="submit">LOG ME IN!</button>
             </div>
         </form>
     </div>

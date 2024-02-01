@@ -1,4 +1,5 @@
 <?php
+// Inclusion du fichier d'initialisation
 require_once __DIR__ . '/../src/init.php';
 ?>
 
@@ -19,19 +20,24 @@ require_once __DIR__ . '/../src/init.php';
 </head>
 
 <body>
-    <?php require_once __DIR__ . '/../src/partials/menu.php'; ?>
-    <?php require_once __DIR__ . '/../src/partials/show_error.php'; ?>
+    <?php
+    // Inclusion du menu
+    require_once __DIR__ . '/../src/partials/menu.php';
+    // Inclusion du gestionnaire d'erreurs
+    require_once __DIR__ . '/../src/partials/show_error.php';
+    ?>
 
     <table>
         <tr>
-            <th>Name</td>
-            <th>Type</td>
-            <th>Real Price</td>
-            <th>Reduction</td>
-            <th>To Pay</td>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Real Price</th>
+            <th>Reduction</th>
+            <th>To Pay</th>
         </tr>
 
         <?php
+        // Récupération des produits dans le panier de l'utilisateur
         $pdoStatement = $pdo->prepare("SELECT p.name, p.type, p.price, p.reduction FROM Products AS p
         JOIN Links AS l ON l.id_product = p.id
         JOIN Orders AS o ON l.id_order = o.id
@@ -56,6 +62,7 @@ require_once __DIR__ . '/../src/init.php';
     <br>
 
     <div>
+        <!-- Formulaire de commande -->
         <form action="/actions/shoppingCart.php" method="post">
             <div>
                 <input placeholder="Name" type="text" name="name" id="name">
@@ -67,7 +74,7 @@ require_once __DIR__ . '/../src/init.php';
                 <input placeholder="E-mail" type="email" name="email" id="email">
             </div>
             <div>
-                <input placeholder="Adress" type="text" name="adress" id="adress">
+                <input placeholder="Address" type="text" name="address" id="address">
             </div>
             <div>
                 <input placeholder="Number" type="tel" name="number" id="number">
@@ -78,3 +85,5 @@ require_once __DIR__ . '/../src/init.php';
         </form>
     </div>
 </body>
+
+</html>

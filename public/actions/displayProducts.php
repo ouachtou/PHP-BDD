@@ -1,6 +1,12 @@
 <?php
 require_once __DIR__ . '/../../src/init.php';
 
+/**
+ * Récupère la liste des produits en fonction de la recherche effectuée.
+ *
+ * @param PDO $pdo - L'objet PDO pour la connexion à la base de données.
+ * @return array - Un tableau associatif contenant les informations des produits.
+ */
 function GetProducts($pdo)
 {
     $searchValue = isset($_POST['search']) ? $_POST['search'] : "";
@@ -15,6 +21,12 @@ function GetProducts($pdo)
     return $products;
 }
 
+/**
+ * Affiche la liste des produits avec leurs informations.
+ *
+ * @param PDO $pdo - L'objet PDO pour la connexion à la base de données.
+ * @return string - Une chaîne HTML contenant les informations des produits.
+ */
 function DisplayProducts($pdo)
 {
     $allProducts = GetProducts($pdo);
