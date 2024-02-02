@@ -3,7 +3,7 @@ CREATE TABLE IF NOT EXISTS `Users` (
     `id_order` INT(11) DEFAULT NULL,
     `name` VARCHAR(255) DEFAULT NULL,
     `first_name` VARCHAR(255) NOT NULL,
-    `adress` VARCHAR(255) DEFAULT NULL,
+    `address` VARCHAR(255) DEFAULT NULL,
     `password` VARCHAR(255) NOT NULL,
     `email` VARCHAR(255) NOT NULL,
     `created_at` DATETIME NOT NULL DEFAULT current_timestamp(),

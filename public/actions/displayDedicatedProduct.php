@@ -44,11 +44,16 @@ function DisplayDedicatedProduct($pdo, $name, $type)
     $list .= '<hr>';
 
     $list .= '<p id="price-PD">' . $price . ' €</p>';
-    $list .= '<p id="quantity-PD"><span>' . $quantity . '</span> en stock</p>';
-    $list .= '<form action="/actions/addToCart.php" method="POST">';
-    $list .= '  <input type="hidden" name="productId" value="' . $id . '">';
-    $list .= '  <input type="submit" id="addCart-PD" value="Add to Cart">';
-    $list .= '</form>';
+
+    if ($quantity > 0) {
+        $list .= '<p id="quantity-PD"><span>' . $quantity . '</span> en stock</p>';
+        $list .= '<form action="/actions/addToCart.php" method="POST">';
+        $list .= '  <input type="hidden" name="productId" value="' . $id . '">';
+        $list .= '  <input type="submit" id="addCart-PD" value="Add to Cart">';
+        $list .= '</form>';
+    } else {
+        $list .= '<p id="quantity-PD">Hors Stock</p>';
+    }
 
     $list .= '<hr>';
 

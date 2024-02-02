@@ -10,8 +10,8 @@ $userOrder = $getUserOrder->fetch()['id_order'];
 // Si l'utilisateur n'a pas de commande existante
 if ($userOrder === NULL) {
     // Création d'une nouvelle commande pour l'utilisateur
-    $insertOrder = $pdo->prepare('INSERT INTO Orders (id_user, status) VALUES (?, ?);');
-    $insertOrder->execute([$user['id'], "En panier"]);
+    $insertOrder = $pdo->prepare('INSERT INTO Orders (id_user, status) VALUES (?, "New");');
+    $insertOrder->execute([$user['id']]);
 
     // Récupération de l'ID de la nouvelle commande
     $userOrder = $pdo->lastInsertId();
@@ -20,6 +20,14 @@ if ($userOrder === NULL) {
     $setUserOrder = $pdo->prepare('UPDATE Users SET id_order = ? WHERE Users.id = ?');
     $setUserOrder->execute([$userOrder, $user['id']]);
 }
+
+$getProduct = $pdo->prepare('SELECT * FROM Products WHERE id = ?');
+$getProduct->execute([$_POST['productId']]);
+$product = $getProduct->fetch();
+
+// Actualise la BDD
+$updateQuantity = $pdo->prepare('UPDATE Products SET quantity = ? WHERE id = ?');
+$updateQuantity->execute([$product['quantity'] - 1, $product['id']]);
 
 // Ajout du produit à la commande
 $insertProduct = $pdo->prepare('INSERT INTO Links (id_order, id_product) VALUES (?, ?);');
