@@ -2,6 +2,7 @@
 require_once __DIR__ . '/../../src/init.php';
 // $pdo est dispo !
 
+
 if (empty($_POST['name'])) {
     // error
     $_SESSION['error_message'] = 'Name field is empty.';
@@ -16,8 +17,8 @@ if (empty($_POST['type'])) {
     die(); // stop execution du script
 }
 
-$getProduct = $pdo->prepare('SELECT * FROM products WHERE name = ? AND type = ?');
-$getProduct->execute([$_POST['name'], $_POST['type']]);
+$getProduct = $pdo->prepare('SELECT * FROM products WHERE id = ?');
+$getProduct->execute([$_SESSION['idP']]);
 $product = $getProduct->fetch(PDO::FETCH_ASSOC);
 
 if (empty($product)) {
@@ -59,7 +60,9 @@ if (empty($_POST['reduction'])) {
     }
 }
 
-$updateProduct = $pdo->prepare('UPDATE Products SET price = ?, quantity = ?, reduction = ? WHERE name = ? AND type = ?');
-$updateProduct->execute([$_POST['price'], $_POST['quantity'], $_POST['reduction'], $_POST['name'], $_POST['type']]);
+
+$updateProduct = $pdo->prepare('UPDATE Products SET name = ?, type = ?, price = ?, quantity = ?, reduction = ? WHERE id= ?');
+$updateProduct->execute([$_POST['name'], $_POST['type'], $_POST['price'], $_POST['quantity'], $_POST['reduction'], $_SESSION['idP']]);
 
 header('Location: /modifyProduct.php?success=1'); // $_GET['success']
+

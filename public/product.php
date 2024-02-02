@@ -5,6 +5,14 @@ require_once __DIR__ . '/../src/init.php';
 require_once __DIR__ . '/../src/partials/head_css.php';
 // Inclusion du script d'affichage du produit dédié
 require_once __DIR__ . '/../public/actions/displayDedicatedProduct.php';
+
+
+$select = $pdo->prepare('SELECT * FROM Products WHERE name = ?');
+$select->execute([$_GET["product"]]);
+
+$prod = $select->fetch();
+
+
 ?>
 
 <!DOCTYPE html>
@@ -35,6 +43,45 @@ require_once __DIR__ . '/../public/actions/displayDedicatedProduct.php';
         <!-- Affichage du produit dédié -->
         <?= DisplayDedicatedProduct($pdo, $_GET["product"], $_GET["category"]) ?>
     </div>
+    <div id="container-PD" class="container">
+        <?php if (isset($_SESSION['admin'])) { ?>
+
+            <form action="/actions/modifyProduct.php" method="post">
+                <div>
+                    <label for="name">Name:</label>
+                    <input type="text" name="name" id="name" value="<?php echo $prod['name'] ?>">
+                </div>
+                <div>
+                    <label for="type">Type:</label>
+                    <input type="text" name="type" id="type" value="<?php echo $prod['type'] ?>">
+                </div>
+                <div>
+                    <label for="price">Price:</label>
+                    <input type="text" name="price" id="price" value="<?php echo $prod['price'] ?>">
+                </div>
+                <div>
+                    <label for="quantity">Quantity:</label>
+                    <input type="text" name="quantity" id="quantity" value="<?php echo $prod['quantity'] ?>">
+                </div>
+                <div>
+                    <label for="reduction">Reduction:</label>
+                    <input type="text" name="reduction" id="reduction" value="<?php echo $prod['reduction'] ?>">
+                </div>
+                <div>
+                    <button type="submit">Modify</button>
+                </div>
+            </form>
+        <?php } ?>
+            
+            <form action="./actions/deleteProduct.php">
+                <button type="submit">
+                    <img style="width: 50px;" src="https://cdn-icons-png.flaticon.com/512/9790/9790368.png" alt="">
+                </button>
+            </form>
+
+    </div>
+        
+
 </body>
 
 </html>

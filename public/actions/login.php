@@ -18,6 +18,7 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
     if ($user && password_verify($_POST['password'], $user['password'])) {
         // Authentification réussie : enregistre l'ID de l'utilisateur dans la session
         $_SESSION['user_id'] = $user['id'];
+        $_SESSION['admin'] = $user['admin'];
         header('Location: /index.php'); // Redirige vers la page d'accueil
     } else {
         // Authentification échouée : enregistre un message d'erreur et redirige vers la page de connexion
