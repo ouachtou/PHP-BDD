@@ -29,13 +29,14 @@ $getProduct = $pdo->prepare('SELECT * FROM Products WHERE id = ?');
 $getProduct->execute([$_POST['productId']]);
 $product = $getProduct->fetch();
 
-// Actualise la BDD
-$updateQuantity = $pdo->prepare('UPDATE Products SET quantity = ? WHERE id = ?');
-$updateQuantity->execute([$product['quantity'] - 1, $product['id']]);
+if ($user['admin'] === 1 && $_SERVER['REQUEST_METHOD'] === 'POST'){
+    // Actualise la BDD
+    $updateQuantity = $pdo->prepare('UPDATE Products SET quantity = ? WHERE id = ?');
+    $updateQuantity->execute([$product['quantity'] - 1, $product['id']]);
 
-// Ajout du produit à la commande
-$insertProduct = $pdo->prepare('INSERT INTO Links (id_order, id_product) VALUES (?, ?);');
-$insertProduct->execute([$userOrder, $_POST['productId']]);
-
+    // Ajout du produit à la commande
+    $insertProduct = $pdo->prepare('INSERT INTO Links (id_order, id_product) VALUES (?, ?);');
+    $insertProduct->execute([$userOrder, $_POST['productId']]);
+}
 // Redirection vers la liste des produits avec un indicateur de succès en paramètre
 header('Location: /productsList.php?success=1'); // $_GET['success']

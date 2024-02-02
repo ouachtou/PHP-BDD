@@ -65,7 +65,8 @@ if (empty($_POST['reduction'])) {
     }
 }
 
-$updateProduct = $pdo->prepare('UPDATE Products SET name = ?, type = ?, price = ?, quantity = ?, reduction = ? WHERE id= ?');
-$updateProduct->execute([$_POST['name'], $_POST['type'], $_POST['price'], $_POST['quantity'], $_POST['reduction'], $_POST['id']]);
-
+if ($user['admin'] === 1 && $_SERVER['REQUEST_METHOD'] === 'POST'){
+    $updateProduct = $pdo->prepare('UPDATE Products SET name = ?, type = ?, price = ?, quantity = ?, reduction = ? WHERE id= ?');
+    $updateProduct->execute([$_POST['name'], $_POST['type'], $_POST['price'], $_POST['quantity'], $_POST['reduction'], $_POST['id']]);
+}
 header('Location: /productsList.php?success=1'); // $_GET['success']
