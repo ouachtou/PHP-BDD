@@ -30,14 +30,14 @@ if (strlen($_POST['number']) < 10) {
     die(); // stop execution du script
 }
 
-if (empty($_POST['adress'])) {
+if (empty($_POST['address'])) {
     $_SESSION['error_message'] = "Invalide";
     header('Location: /shoppingCart.php'); // redirige utilisateur
     die(); // stop execution du script
 }
 
 // verifier que l'email n'est pas deja en DB et correspond à un autre utlisateur
-$checkMail = $pdo->prepare('SELECT * FROM users WHERE email = ? ');
+$checkMail = $pdo->prepare('SELECT * FROM Users WHERE email = ? ');
 $checkMail->execute([$_POST['email']]);
 $alreadyExists = $checkMail->fetch(PDO::FETCH_ASSOC);
 
@@ -49,8 +49,8 @@ if ($alreadyExists == false) {
 }
 
 // UPDATE
-$updateUser = $pdo->prepare('UPDATE Users SET email = ?, name = ?, first_name = ?, phone_number = ?, adress = ? WHERE id = ?');
-$updateUser->execute([$_POST['email'], $_POST['name'], $_POST['first_name'], $_POST['number'], $_POST['adress'], $user['id']]);
+$updateUser = $pdo->prepare('UPDATE Users SET email = ?, name = ?, first_name = ?, phone_number = ?, address = ? WHERE id = ?');
+$updateUser->execute([$_POST['email'], $_POST['name'], $_POST['first_name'], $_POST['number'], $_POST['address'], $user['id']]);
 
 // Set order's status to "sent" 
 $updateStatus = $pdo->prepare('UPDATE Orders SET status = "Sent" WHERE status = "New" AND id IN (SELECT id_order FROM Users WHERE id = ?)');
