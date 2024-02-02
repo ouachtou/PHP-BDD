@@ -31,6 +31,29 @@ require_once __DIR__ . '/../src/init.php';
                 <div class="alert alert-success">
                     Welcome to TechShop!
                 </div>
+                <div style="display: flex; flex-wrap: wrap; align-items:center; justify-content : space-around; margin-bottom: 20px;">
+                    <div style="padding: 0 20px;">
+                        <h1 >Notre Boutique</h1>
+                        <p>Avenue de la Tech,</p>
+                        <p>78500 SARTROUVILLE</p>
+                    </div>
+                    <img style="width: 50%;" src="https://media.materiel.net/cms/shop/matnet-strasbourg-1.jpg" alt="">
+                </div>
+                <div style="display: flex; flex-wrap: wrap; align-items:center; justify-content : space-around; margin-bottom: 20px;">
+                    <img style="width: 50%;" src="https://www.axido.fr/wp-content/uploads/2021/07/shutterstock_1057841874.webp" alt="">
+                    <div style="padding: 0 20px;">
+                        <h1>Notre DataCenter</h1>
+                        <p>On a vla les données dedans on connait tous sur tous</p>
+                    </div>
+                </div>
+                <div style="display: flex; flex-wrap: wrap; align-items:center; justify-content : space-around; margin-bottom: 20px;">
+                    <div style="padding: 0 20px;">
+                        <h2 style="padding: 0 20px;">Nous somme prêt à vous accueillir</h2>
+                        <p>comme il se doit</p>
+                    </div>
+                    <img width="50%" src="https://i.imgflip.com/1z2ofw.jpg" alt="">
+                </div>
+               
             </div>
         </div>
     </div>

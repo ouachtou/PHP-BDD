@@ -30,7 +30,7 @@ require_once __DIR__ . '/../src/partials/head_css.php';
             <div class="col">
                 <!-- Formulaire de recherche -->
                 <div class="search_container">
-                    <form action="productsList.php" method="POST">
+                    <form action="productsList.php" method="GET">
                         <input name="search" type="text" placeholder="Rechercher ...">
                         <input type="submit" value="Search">
                     </form>

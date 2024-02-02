@@ -9,7 +9,7 @@ require_once __DIR__ . '/../../src/init.php';
  */
 function GetProducts($pdo)
 {
-    $searchValue = isset($_POST['search']) ? $_POST['search'] : "";
+    $searchValue = isset($_GET['search']) ? $_GET['search'] : "";
 
     $st1 = $pdo->prepare("SELECT *, AVG(note) AS rating FROM Products AS p
     LEFT JOIN Feedbacks AS f ON f.id_product = p.id
