@@ -3,9 +3,9 @@
 require_once __DIR__ . '/../src/init.php';
 
 if (!$user){
-    header('Location: degage.php');
+    header('Location: index.php');
 } elseif (!$user['admin']) {
-    header('Location: degage.php');
+    header('Location: index.php');
 }
 ?>
 
