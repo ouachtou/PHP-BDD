@@ -5,9 +5,7 @@ require_once __DIR__ . '/../src/init.php';
 require_once __DIR__ . '/../public/actions/filterOrder.php';
 
 if (!$user){
-    header('Location: degage.php');
-} elseif (!$user['admin']) {
-    header('Location: degage.php');
+    header('Location: index.php');
 }
 ?>
 
