@@ -2,6 +2,11 @@
 require_once __DIR__ . '/../../src/init.php';
 // $pdo est dispo !
 
+if (!$user){
+    header('Location: index.php');
+} elseif (!$user['admin']) {
+    header('Location: index.php');
+}
 
 if (empty($_POST['name'])) {
     // error

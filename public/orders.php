@@ -6,6 +6,8 @@ require_once __DIR__ . '/../public/actions/filterOrder.php';
 
 if (!$user){
     header('Location: index.php');
+} elseif (!$user['admin']) {
+    header('Location: index.php');
 }
 ?>
 

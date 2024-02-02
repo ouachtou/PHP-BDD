@@ -2,6 +2,10 @@
 // Inclusion du fichier d'initialisation
 require_once __DIR__ . '/../../src/init.php';
 
+if (!$user){
+    header('Location: index.php');
+}
+
 // Récupération de la commande de l'utilisateur
 $getUserOrder = $pdo->prepare('SELECT id_order FROM Users WHERE id = ?');
 $getUserOrder->execute([$user['id']]);
