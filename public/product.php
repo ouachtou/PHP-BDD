@@ -1,6 +1,9 @@
 <?php
+// Inclusion du fichier d'initialisation
 require_once __DIR__ . '/../src/init.php';
+// Inclusion du fichier de styles CSS pour l'en-tête
 require_once __DIR__ . '/../src/partials/head_css.php';
+// Inclusion du script d'affichage du produit dédié
 require_once __DIR__ . '/../public/actions/displayDedicatedProduct.php';
 
 
@@ -29,14 +32,16 @@ $prod = $select->fetch();
 </head>
 
 <body>
-    <?php require_once __DIR__ . '/../src/partials/menu.php'; ?>
-    <?php require_once __DIR__ . '/../src/partials/show_error.php'; ?>
+    <?php
+    // Inclusion du menu
+    require_once __DIR__ . '/../src/partials/menu.php';
+    // Inclusion du gestionnaire d'erreurs
+    require_once __DIR__ . '/../src/partials/show_error.php';
+    ?>
 
     <div id="container-PD" class="container">
-
-            <?= DisplayDedicatedProduct($pdo, $_GET["product"], $_GET["category"]) ?>
-
-        </div>
+        <!-- Affichage du produit dédié -->
+        <?= DisplayDedicatedProduct($pdo, $_GET["product"], $_GET["category"]) ?>
     </div>
     <div id="container-PD" class="container">
         <?php if (isset($_SESSION['admin'])) { ?>

@@ -1,5 +1,7 @@
 <?php
+// Inclusion du fichier d'initialisation
 require_once __DIR__ . '/../src/init.php';
+// Inclusion du script de filtrage des commandes
 require_once __DIR__ . '/../public/actions/filterOrder.php';
 ?>
 
@@ -20,10 +22,15 @@ require_once __DIR__ . '/../public/actions/filterOrder.php';
 </head>
 
 <body>
-    <?php require_once __DIR__ . '/../src/partials/menu.php'; ?>
-    <?php require_once __DIR__ . '/../src/partials/show_error.php'; ?>
+    <?php
+    // Inclusion du menu
+    require_once __DIR__ . '/../src/partials/menu.php';
+    // Inclusion du gestionnaire d'erreurs
+    require_once __DIR__ . '/../src/partials/show_error.php';
+    ?>
 
     <table>
+        <!-- Section de filtrage des commandes -->
         <section class="filtre">
             <form action='/orders.php' method="POST">
                 <legend>Status :</legend>
@@ -60,6 +67,7 @@ require_once __DIR__ . '/../public/actions/filterOrder.php';
             </form>
         </section>
 
+        <!-- En-tête du tableau -->
         <tr>
             <th>Order's ID</th>
             <th>Order's Date</th>
@@ -68,9 +76,11 @@ require_once __DIR__ . '/../public/actions/filterOrder.php';
         </tr>
 
         <?php
+        // Récupération des commandes filtrées
         $orders = GetOrders($pdo);
 
         foreach ($orders as $order) :
+            // Vérification des filtres
             if (
                 !((empty($_POST['new']) && $order['status'] == "New")
                     || (empty($_POST['sent']) && $order['status'] == "Sent")
@@ -79,6 +89,7 @@ require_once __DIR__ . '/../public/actions/filterOrder.php';
                 || (empty($_POST['new']) && empty($_POST['sent']) && empty($_POST['finished']) && empty($_POST['returned']))
             ) :
 
+                // Récupération des produits liés à la commande
                 $pdoStatement = $pdo->prepare("SELECT P.name, P.type, P.price, P.reduction
                 FROM Links AS L
                 JOIN Products AS P ON P.id = L.id_product
@@ -86,6 +97,7 @@ require_once __DIR__ . '/../public/actions/filterOrder.php';
                 $pdoStatement->execute([$order['id']]);
                 $products = $pdoStatement->fetchAll();
         ?>
+                <!-- Affichage des détails de la commande -->
                 <tr>
                     <td><?= $order['id'] ?></td>
                     <td><?= $order['created_at'] ?></td>
@@ -101,7 +113,10 @@ require_once __DIR__ . '/../public/actions/filterOrder.php';
                             <?php endforeach; ?>
                         </ul>
                     </td>
-                    <?php if ($user['admin'] === 1) : ?>
+                    <?php
+                    // Affichage du formulaire de modification de statut pour les administrateurs
+                    if ($user['admin'] === 1) :
+                    ?>
                         <td>
                             <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
                                 <input type="hidden" name="order_id" value="<?= $order['id'] ?>">
@@ -115,7 +130,10 @@ require_once __DIR__ . '/../public/actions/filterOrder.php';
                             </form>
                         </td>
                     <?php endif; ?>
-                    <?php if ($user['admin'] === 1 && $_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['order_id'], $_POST['new_status'])) {
+
+                    <?php
+                    // Traitement de la modification de statut
+                    if ($user['admin'] === 1 && $_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['order_id'], $_POST['new_status'])) {
                         $order_id = $_POST['order_id'];
                         $new_status = $_POST['new_status'];
                         $pdoStatement = $pdo->prepare("UPDATE Orders SET status = ?, updated_at = current_timestamp() WHERE id = ?");

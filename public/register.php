@@ -1,4 +1,5 @@
 <?php
+// Inclusion du fichier d'initialisation
 require_once __DIR__ . '/../src/init.php';
 ?>
 
@@ -13,11 +14,16 @@ require_once __DIR__ . '/../src/init.php';
 </head>
 
 <body>
-    <?php require_once __DIR__ . '/../src/partials/menu.php'; ?>
-    <?php require_once __DIR__ . '/../src/partials/show_error.php'; ?>
+    <?php
+    // Inclusion du menu
+    require_once __DIR__ . '/../src/partials/menu.php';
+    // Inclusion du gestionnaire d'erreurs
+    require_once __DIR__ . '/../src/partials/show_error.php';
+    ?>
 
     <div class="form_box">
-        <form action="/actions/register.php" method="post">
+        <!-- Formulaire de enregistrement -->
+       <form action="/actions/register.php" method="post">
             <div>
                 <input placeholder="First name" type="text" name="first_name" id="first_name">
             </div>
