@@ -18,7 +18,7 @@ if (!$user){
     <title>TechShop - Add Product</title>
 </head>
 
-<body>
+<body oncontextmenu="return false">
     <?php
     // Inclusion du menu depuis le fichier menu.php
     require_once __DIR__ . '/../src/partials/menu.php';

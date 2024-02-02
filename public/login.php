@@ -13,7 +13,7 @@ require_once __DIR__ . '/../src/init.php';
     <title>TechShop - Login</title>
 </head>
 
-<body>
+<body oncontextmenu="return false">
     <?php
     // Inclusion du menu
     require_once __DIR__ . '/../src/partials/menu.php';
