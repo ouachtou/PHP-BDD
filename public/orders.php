@@ -3,6 +3,12 @@
 require_once __DIR__ . '/../src/init.php';
 // Inclusion du script de filtrage des commandes
 require_once __DIR__ . '/../public/actions/filterOrder.php';
+
+if (!$user){
+    header('Location: degage.php');
+} elseif (!$user['admin']) {
+    header('Location: degage.php');
+}
 ?>
 
 <!DOCTYPE html>

@@ -1,6 +1,12 @@
 <?php
 // Inclusion du fichier d'initialisation
 require_once __DIR__ . '/../src/init.php';
+
+if (!$user){
+    header('Location: degage.php');
+} elseif (!$user['admin']) {
+    header('Location: degage.php');
+}
 ?>
 
 <!DOCTYPE html>
