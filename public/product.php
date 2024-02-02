@@ -40,47 +40,56 @@ $prod = $select->fetch();
         <!-- Affichage du produit dédié -->
         <?= DisplayDedicatedProduct($pdo, $_GET["product"], $_GET["category"]) ?>
     </div>
-    <div id="container-PD" class="container">
-        <?php if ($user['admin']) { ?>
-
-            <form action="/actions/modifyProduct.php" method="post">
-                <input type="hidden" name="id" value="<?= $prod['id'] ?>">
-                <div>
-                    <label for="name">Name:</label>
-                    <input type="text" name="name" id="name" value="<?= $prod['name'] ?>">
-                </div>
-                <div>
-                    <label for="type">Type:</label>
-                    <input type="text" name="type" id="type" value="<?= $prod['type'] ?>">
-                </div>
-                <div>
-                    <label for="price">Price:</label>
-                    <input type="text" name="price" id="price" value="<?= $prod['price'] ?>">
-                </div>
-                <div>
-                    <label for="quantity">Quantity:</label>
-                    <input type="text" name="quantity" id="quantity" value="<?= $prod['quantity'] ?>">
-                </div>
-                <div>
-                    <label for="reduction">Reduction:</label>
-                    <input type="text" name="reduction" id="reduction" value="<?= $prod['reduction'] ?>">
-                </div>
-                <div>
-                    <button type="submit">Modify</button>
-                </div>
-            </form>
-        <?php } ?>
-
-        <form action="./actions/deleteProduct.php">
+    <div id="right-section" class="container">
+        <h3>Send Feedback :</h3>
+        <form action="/actions/feedback.php" id="feedback-form" method="post">
+            <!-- Champs du formulaire -->
             <input type="hidden" name="id" value="<?= $prod['id'] ?>">
-            <button type="submit">
-                <img style="width: 50px;" src="https://cdn-icons-png.flaticon.com/512/9790/9790368.png" alt="">
-            </button>
+            <input type="number" placeholder="Note" name="Note" min="1" max="10" required>
+            <textarea type="text" placeholder="Comment" name="comment" id="comment"></textarea>
+            <button type="submit">Send</button>
         </form>
+        <div id="container-PD" class="container">
+            <?php if ($user['admin']) : ?>
+                <div id="modify-form">
+                    <h3>Modify Product :</h3>
+                    <form action="/actions/modifyProduct.php" method="post">
+                        <input type="hidden" name="id" value="<?= $prod['id'] ?>">
+                        <div>
+                            <label for="name">Name:</label>
+                            <input type="text" name="name" id="name" value="<?= $prod['name'] ?>">
+                        </div>
+                        <div>
+                            <label for="type">Type:</label>
+                            <input type="text" name="type" id="type" value="<?= $prod['type'] ?>">
+                        </div>
+                        <div>
+                            <label for="price">Price:</label>
+                            <input type="text" name="price" id="price" value="<?= $prod['price'] ?>">
+                        </div>
+                        <div>
+                            <label for="quantity">Quantity:</label>
+                            <input type="text" name="quantity" id="quantity" value="<?= $prod['quantity'] ?>">
+                        </div>
+                        <div>
+                            <label for="reduction">Reduction:</label>
+                            <input type="text" name="reduction" id="reduction" value="<?= $prod['reduction'] ?>">
+                        </div>
+                        <div>
+                            <button type="submit">Modify</button>
+                        </div>
+                    </form>
+                </div>
+            <?php endif; ?>
 
+            <form action="./actions/deleteProduct.php">
+                <input type="hidden" name="id" value="<?= $prod['id'] ?>">
+                <button type="submit">
+                    <img style="width: 50px;" src="https://cdn-icons-png.flaticon.com/512/9790/9790368.png" alt="">
+                </button>
+            </form>
+        </div>
     </div>
-
-
 </body>
 
 </html>

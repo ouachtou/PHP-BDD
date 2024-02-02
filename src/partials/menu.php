@@ -75,9 +75,6 @@
                     <li>
                         <a href="/shoppingCart.php">Shopping Cart</a>
                     </li>
-                    <li>
-                        <a href="/feedback.php">Rate product</a>
-                    </li>
                 <?php endif; ?>
             </div>
         </nav>

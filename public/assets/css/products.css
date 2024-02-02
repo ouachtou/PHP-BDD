@@ -137,3 +137,18 @@
 #addCart-PD:hover {
   background-color: #045f7a;
 }
+
+#right-section {
+  display: flex;
+  flex-direction: column;
+}
+
+#feedback-form {
+  display: flex;
+  flex-direction: column;
+}
+
+#modify-form {
+  display: flex;
+  flex-direction: column;
+}
