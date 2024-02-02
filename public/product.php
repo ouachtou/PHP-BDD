@@ -45,7 +45,7 @@ $prod = $select->fetch();
         <form action="/actions/feedback.php" id="feedback-form" method="post">
             <!-- Champs du formulaire -->
             <input type="hidden" name="id" value="<?= $prod['id'] ?>">
-            <input type="number" placeholder="Note" name="Note" min="1" max="10" required>
+            <input type="number" placeholder="Note" name="note" min="1" max="10" required>
             <textarea type="text" placeholder="Comment" name="comment" id="comment"></textarea>
             <button type="submit">Send</button>
         </form>
@@ -82,7 +82,7 @@ $prod = $select->fetch();
                 </div>
             <?php endif; ?>
 
-            <form action="./actions/deleteProduct.php">
+            <form action="./actions/deleteProduct.php" method="POST">
                 <input type="hidden" name="id" value="<?= $prod['id'] ?>">
                 <button type="submit">
                     <img style="width: 50px;" src="https://cdn-icons-png.flaticon.com/512/9790/9790368.png" alt="">
