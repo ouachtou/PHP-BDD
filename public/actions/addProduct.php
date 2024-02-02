@@ -38,7 +38,7 @@ if (!empty($_POST['reduction'])) {
         die(); // stop execution du script
     }
 }
- 
+
 if (!is_numeric($_POST['price'])) {
     // error
     $_SESSION['error_message'] = 'Price must be a number.';

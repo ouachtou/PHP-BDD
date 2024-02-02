@@ -99,9 +99,6 @@
                             <a href="/addProduct.php">Add Product</a>
                         </li>
                         <li>
-                            <a href="/modifyProduct.php">Modify Product</a>
-                        </li>
-                        <li>
                             <a href="/orders.php">Orders</a>
                         </li>
                     <?php endif; ?>

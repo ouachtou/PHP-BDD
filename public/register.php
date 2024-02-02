@@ -23,7 +23,7 @@ require_once __DIR__ . '/../src/init.php';
 
     <div class="form_box">
         <!-- Formulaire de enregistrement -->
-       <form action="/actions/register.php" method="post">
+        <form action="/actions/register.php" method="post">
             <div>
                 <input placeholder="First name" type="text" name="first_name" id="first_name">
             </div>

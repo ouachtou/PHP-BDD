@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Fonction pour récupérer la liste des commandes.
  *

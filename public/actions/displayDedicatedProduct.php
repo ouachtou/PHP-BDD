@@ -34,7 +34,6 @@ function DisplayDedicatedProduct($pdo, $name, $type)
     $price = $product['price'];
     $quantity = $product['quantity'];
     $img = $product['image'];
-    $_SESSION['idP'] = $id;
 
     $list = '';
     $list .= '<img id="img-PD" src="' . $img . '" ></img>';

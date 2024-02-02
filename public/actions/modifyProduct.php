@@ -18,7 +18,7 @@ if (empty($_POST['type'])) {
 }
 
 $getProduct = $pdo->prepare('SELECT * FROM products WHERE id = ?');
-$getProduct->execute([$_SESSION['idP']]);
+$getProduct->execute([$_POST['id']]);
 $product = $getProduct->fetch(PDO::FETCH_ASSOC);
 
 if (empty($product)) {
@@ -60,9 +60,7 @@ if (empty($_POST['reduction'])) {
     }
 }
 
-
 $updateProduct = $pdo->prepare('UPDATE Products SET name = ?, type = ?, price = ?, quantity = ?, reduction = ? WHERE id= ?');
-$updateProduct->execute([$_POST['name'], $_POST['type'], $_POST['price'], $_POST['quantity'], $_POST['reduction'], $_SESSION['idP']]);
+$updateProduct->execute([$_POST['name'], $_POST['type'], $_POST['price'], $_POST['quantity'], $_POST['reduction'], $_POST['id']]);
 
-header('Location: /modifyProduct.php?success=1'); // $_GET['success']
-
+header('Location: /productsList.php?success=1'); // $_GET['success']

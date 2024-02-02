@@ -118,7 +118,7 @@ require_once __DIR__ . '/../public/actions/filterOrder.php';
                     if ($user['admin'] === 1) :
                     ?>
                         <td>
-                            <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+                            <form method="post" action="<?= $_SERVER['PHP_SELF'] ?>">
                                 <input type="hidden" name="order_id" value="<?= $order['id'] ?>">
                                 <select name="new_status">
                                     <option value="New">New</option>

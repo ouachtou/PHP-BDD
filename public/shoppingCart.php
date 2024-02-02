@@ -42,7 +42,7 @@ require_once __DIR__ . '/../src/init.php';
         JOIN Links AS l ON l.id_product = p.id
         JOIN Orders AS o ON l.id_order = o.id
         JOIN Users AS u ON u.id = o.id_user
-        WHERE u.id = ?");
+        WHERE u.id = ? AND status = 'New'");
         $pdoStatement->execute([$user['id']]);
         $products = $pdoStatement->fetchAll();
 
