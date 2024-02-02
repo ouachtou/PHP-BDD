@@ -71,7 +71,8 @@ if ($alreadyExists != false) {
 }
 
 // INSERT
-$insertProduct = $pdo->prepare('INSERT INTO products(name, type, price, quantity, image) VALUES(?, ?, ?, ?, ?)');
-$insertProduct->execute([$_POST['name'], $_POST['type'], $_POST['price'], $_POST['quantity'], $_POST['image']]);
-
+if ($user['admin'] === 1 && $_SERVER['REQUEST_METHOD'] === 'POST'){
+    $insertProduct = $pdo->prepare('INSERT INTO products(name, type, price, quantity, image) VALUES(?, ?, ?, ?, ?)');
+    $insertProduct->execute([$_POST['name'], $_POST['type'], $_POST['price'], $_POST['quantity'], $_POST['image']]);
+}
 header('Location: /addProduct.php?success=1'); // $_GET['success']
